@@ -7,14 +7,13 @@
  */
 
 import React from 'react';
-import Styles from './components/styles';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import EditClientPrivProfile from './components/EditClientProfilePriv';
-import EditClientPubProfile from './components/EditClientProfilePub';
+import Styles from './Components/styles';
+import Header from './Components/Header';
+import Footer from './Components/Footer';
+import EditClientPrivProfile from './Components/EditClientProfilePriv';
+import EditClientPubProfile from './Components/EditClientProfilePub';
 
 import {
-  StyleSheet,
   View,
 } from 'react-native';
 
