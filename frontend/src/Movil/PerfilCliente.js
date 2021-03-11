@@ -22,7 +22,7 @@ const App = () => {
     <>
       <View style={Styles.MainContainer}>
         <Header />
-        <EditClientPrivProfile />
+        <EditClientPubProfile />
         <Footer />
       </View>
     </>

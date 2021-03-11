@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
-import Styles from '../Estilos/styles';
+import Styles from './styles';
 
 import {
     ScrollView,
     View,
     Text,
     TextInput,
+    TouchableOpacity,
 } from 'react-native';
 
 class EditClientPrivProfile extends Component {
+
+    _savePassword() {
+        alert("Contraseña guardada");
+    }
+
+    _saveAddress() {
+        alert("Dirección guardada");
+    }
+
     render() {
         return(
             <>
@@ -44,11 +54,13 @@ class EditClientPrivProfile extends Component {
                                 style={Styles.Input}
                                 placeholder='xxxxxxxxxxxxxxx'
                             />
+                            <TouchableOpacity onPress={this._savePassword}>
                             <View style={Styles.Button}>
                                 <Text style={Styles.ButtonLabel}>
                                     Guardar
                                 </Text>
                             </View>
+                            </TouchableOpacity>
                         </View>
                         <View style={Styles.SectionContainer}>
                             <Text style={[Styles.Label, Styles.SectionLabel]}>
@@ -98,11 +110,13 @@ class EditClientPrivProfile extends Component {
                                     placeholder='Calle 2'
                                 />
                             </View>
+                            <TouchableOpacity onPress={this._saveAddress}>
                             <View style={Styles.Button}>
                                 <Text style={Styles.ButtonLabel}>
                                     Guardar
                                 </Text>
                             </View>
+                            </TouchableOpacity>
                         </View>
                     </ScrollView>
                 </View>
