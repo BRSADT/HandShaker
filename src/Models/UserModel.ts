@@ -22,13 +22,13 @@ UserSchema.pre('save', function preSaveAddPasswordHash(next) {
     if (!user.isModified('password')) {
       return next();
     }
-  
+
     // generate a salt
     bcrypt.genSalt(BCRYPT_SALT_WORK_FACTOR, (errorSalt, salt) => {
       if (errorSalt) {
         return next(errorSalt);
       }
-  
+
       // hash the password along with our new salt
       bcrypt.hash(user.Contrasena, salt, (errorHash, hash) => {
         if (errorHash) {
@@ -40,18 +40,18 @@ UserSchema.pre('save', function preSaveAddPasswordHash(next) {
       });
     });
   });
-  
+
   UserSchema.methods.comparePassword = async function comparePassword(candidatePassword) {
     const user = this as Iuser;
     const isMatch = await bcrypt.compare(candidatePassword, user.Contrasena);
     return isMatch;
   };
   const UserModel=model<Iuser>('Usuario',UserSchema);
-  export default UserModel 
+  export default UserModel
   export async function Login(Correo:string,Contrasena:string){
     const candidateUser = await UserModel.findOne({ Correo });
     if (!candidateUser) {
-      throw new Error("User not found")
+      throw new Error('User not found')
     }
     const match = candidateUser.comparePassword(Contrasena)
     if(match){
