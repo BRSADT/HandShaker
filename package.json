@@ -7,14 +7,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rimraf build/",
     "dev": "nodemon --config \"./util/nodemon.json\"/",
-    "prebuild:back": "tslint -c tslint.json -p tsconfig.json --fix",
     "build:back": "tsc",
     "prebuild:front": "mkdirp ./build/public",
     "build:front": "cd frontend && npm install && npm run build",
-    "postbuild:front": "move-cli src/public/build build/public/front",
+    "postbuild:front": "move-cli frontend/build build/public/front",
     "build": "npm run build:back & npm run build:front",
     "prebuild": "npm run clean -s",
-    "start": "SET NODE_ENV=development & nodemon src/index.ts"
+    "start": "SET NODE_ENV=production & node build"
   },
   "repository": {
     "type": "git",
