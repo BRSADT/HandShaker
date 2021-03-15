@@ -36,9 +36,12 @@ export function ContactRoute() {
 }
 export function LoginRoute() {
   return (
-    <React.Fragment>
-      <Login />
-    </React.Fragment>
+    <div>
+      <React.Fragment>
+    <Login />
+  </React.Fragment>
+    </div>
+ 
   );
 }
 export function  RegisterRoute() {

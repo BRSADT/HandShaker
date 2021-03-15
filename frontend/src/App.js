@@ -34,10 +34,10 @@ export default function App() {
         <Route  path="/aboutbrenda"> 
         <AboutBrenda /> 
         </Route>
-      <Route exact path="/contact"> 
+      <Route  path="/contact"> 
         <ContactRoute /> 
       </Route>
-      <Route exact path="/login"> 
+      <Route path="/Login"> 
         <LoginRoute /> 
       </Route>
       <Route exact path="/register"> 

@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+.navbar-dark{
+    height: 100%;
+    color: #eef1f5;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+   color:white;
+    margin-right: 30px;
+    font-style: normal;
+    font-size: 3vh;
+    
+}
+.navbar-expand-lg .navbar-collapse {
+    float: right;
+  margin-right: 30px;
+}
+
+.navbar-dark img{
+    margin-left: 10px;
+}
+
+#LogoNameId{
+height: 100%;
+
+}
+.navbar-brand{
+height: 100%;
+}
+
+.bg-dark {
+    background-color: #253137!important;
+}
