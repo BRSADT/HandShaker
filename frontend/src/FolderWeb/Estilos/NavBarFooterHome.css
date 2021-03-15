@@ -1,0 +1,37 @@
+.navbar-dark{
+    height: 100%;
+   
+}
+
+.bg-dark{
+    height: 100%;
+  
+
+}
+
+
+.justify-content-center.First{
+background-color: #253137!important;
+height: 33%;
+}
+
+.justify-content-center h1{
+  color: white;
+  font-size: 5vh;
+}
+
+
+p.one {
+    border-style: solid;
+    border-color: white;
+    color: white;
+    height: 1%;  
+}
+  
+.justify-content-center.Second{
+    background-color: #253137!important;
+    height: 66%;
+    padding: 1%;
+}  
+
+ 

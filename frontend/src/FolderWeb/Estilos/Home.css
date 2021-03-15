@@ -8,6 +8,10 @@ height: 100vh;
  }
 
  .navbarC {
-    height: 15vh;
+    height: 10vh;
  }
 
+
+ .navbarFooter {
+   height: 20vh;
+}

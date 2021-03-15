@@ -2,12 +2,12 @@ import React from "react"
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import "./../Estilos/Header.css"
+import "./../Estilos/HeaderHome.css"
 import {NavDropdown, MenuItem,  Tabs, ButtonToolbar, Button, Table, ButtonGroup, Row, Col, Grid, Panel, FormGroup, FormControl} from 'react-bootstrap';
 import LogoName from "./../../Imagenes/HandShakerName.png"
 
 
-function Header() {
+function HeaderHome() {
     return (
     <>
 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -38,4 +38,4 @@ function Header() {
       );
 }
 
-export default Header;
+export default HeaderHome;

@@ -1,68 +1,73 @@
 #ClassCarousel {
-height: 100%;
+  height: 100%;
 }
 
-
 .ClassItemCarousel {
-    height: 100%;
-    }
-    
-    .carousel-inner{
-        height: 100%;
-    
-    }
+  height: 100%;
+}
 
+.carousel-inner {
+  height: 100%;
+}
 
-    .carousel-inner > .item {
-        height: 100%;
-        
-     }
+.carousel-inner > .item {
+  height: 100%;
+}
 
-     .carousel-inner .item img {
-        height: 100%;
-        background-color: rgba(0,0,0,0.6);
+.carousel-inner .item img {
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
 
-     }
+.carousel-caption {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  /*border: 5px solid #FFFF00;
+       padding: 10px;*/
+}
 
-     .carousel-caption{
-       padding: 10%;
-       align-items: center;
-       text-align: center;
-     }
+.carousel-caption h1 {
+  font-size: 6vh;
+}
 
-     .d-block w-100{
-        background-image: "../../Imagenes/Picture3.jpg";
-        background-color: rgba(0,0,0,0.6);
-     }
+.carousel-caption h3 {
+  font-size: 3vh;
+}
 
-  #Fondo1{
-    background-size: 100%;
-    background-color: rgba(0,0,0,0.8);
-    background-image:url(./../../Imagenes/Picture1.jpg);
-    filter:brightness(0.4);
-    height: 100%;
-    max-width: 100%;
+.d-block w-100 {
+  background-image: "../../Imagenes/Picture3.jpg";
+  background-color: rgba(0, 0, 0, 0.6);
+}
 
-  }
+#Fondo1 {
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0.8);
+  background-image: url(./../../Imagenes/Picture1.jpg);
+  filter: brightness(0.4);
+  width: 100%;
+  height:100%;
+}
 
+#Fondo2 {
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0.8);
+  background-image: url(./../../Imagenes/Picture2.jpg);
+  filter: brightness(0.4);
+  width: 100%;
+  height:100%;
+}
+
+#Fondo3 {
   
-  #Fondo2{
-    background-size: 100%;
-    background-color: rgba(0,0,0,0.8);
-    background-image:url(./../../Imagenes/Picture2.jpg);
-    filter:brightness(0.4);
-    height: 100%;
-    max-width: 100%;
-
-  }
-
-  
-  #Fondo3{
-    background-size: 100%;
-    background-color: rgba(0,0,0,0.8);
-    background-image:url(./../../Imagenes/Picture3.jpg);
-    filter:brightness(0.4);
-    height: 100%;
-    max-width: 100%;
-
-  }
+  background-color: rgba(0, 0, 0, 0.8);
+  background-image: url(./../../Imagenes/Picture3.jpg);
+  filter: brightness(0.4);
+  width: 100%;
+  height:100%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
