@@ -1,0 +1,68 @@
+#ClassCarousel {
+height: 100%;
+}
+
+
+.ClassItemCarousel {
+    height: 100%;
+    }
+    
+    .carousel-inner{
+        height: 100%;
+    
+    }
+
+
+    .carousel-inner > .item {
+        height: 100%;
+        
+     }
+
+     .carousel-inner .item img {
+        height: 100%;
+        background-color: rgba(0,0,0,0.6);
+
+     }
+
+     .carousel-caption{
+       padding: 10%;
+       align-items: center;
+       text-align: center;
+     }
+
+     .d-block w-100{
+        background-image: "../../Imagenes/Picture3.jpg";
+        background-color: rgba(0,0,0,0.6);
+     }
+
+  #Fondo1{
+    background-size: 100%;
+    background-color: rgba(0,0,0,0.8);
+    background-image:url(./../../Imagenes/Picture1.jpg);
+    filter:brightness(0.4);
+    height: 100%;
+    max-width: 100%;
+
+  }
+
+  
+  #Fondo2{
+    background-size: 100%;
+    background-color: rgba(0,0,0,0.8);
+    background-image:url(./../../Imagenes/Picture2.jpg);
+    filter:brightness(0.4);
+    height: 100%;
+    max-width: 100%;
+
+  }
+
+  
+  #Fondo3{
+    background-size: 100%;
+    background-color: rgba(0,0,0,0.8);
+    background-image:url(./../../Imagenes/Picture3.jpg);
+    filter:brightness(0.4);
+    height: 100%;
+    max-width: 100%;
+
+  }

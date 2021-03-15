@@ -1,37 +1,47 @@
 import React from "react";
+import Login from "./Login"
+import Home from "./Home"
 
 
+export function HomeRoute() {
+  return (
+    <React.Fragment>
+    <Home />
+  </React.Fragment>
+  );
+}
 
-export function Home() {
+export function AboutRoute() {
   return (
     <div>
-      <h1>Pagina Home en creacion</h1>
+      <h1>Pagina About 1 a en creacion</h1>
     </div>
   );
 }
 
-export function About() {
+export function AboutBrenda() {
   return (
     <div>
-      <h1>Pagina About en creacion</h1>
+      <h1>Pagina About brenda en creacion</h1>
     </div>
   );
 }
-export function Contact() {
+
+export function ContactRoute() {
   return (
     <div>
       <h1>Pagina Contacto en creacion</h1>
     </div>
   );
 }
-export function Login() {
+export function LoginRoute() {
   return (
-    <div>
-      <h1>Pagina Login en creacion</h1>
-    </div>
+    <React.Fragment>
+      <Login />
+    </React.Fragment>
   );
 }
-export function  Register() {
+export function  RegisterRoute() {
   return (
     <div>
       <h1>Pagina Registro en creacion</h1>

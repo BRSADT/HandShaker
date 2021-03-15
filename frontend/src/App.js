@@ -8,8 +8,7 @@ import {
  // Link
 } from "react-router-dom";
 
-
-import {Home,About,Contact,Login,Register} from "./FolderWeb/Componentes/pages"
+import {HomeRoute,AboutRoute,ContactRoute,LoginRoute,RegisterRoute,AboutBrenda} from "./FolderWeb/Componentes/pages"
 
 export function Error404(){
 
@@ -20,39 +19,39 @@ export function Error404(){
       </div> 
   )
 }
-
-
 export default function App() {
   return (
     
       <Router>
          <div>
-      <Switch>
-      
-      <Route path="/about"> 
-        <About /> 
+      <Switch>  
+      <Route  path="/about"> 
+        <AboutRoute /> 
+        </Route>
+        <Route  path="/home"> 
+        <HomeRoute /> 
+        </Route>
+        <Route  path="/aboutbrenda"> 
+        <AboutBrenda /> 
+        </Route>
+      <Route exact path="/contact"> 
+        <ContactRoute /> 
       </Route>
-      <Route path="/contact"> 
-        <Contact /> 
+      <Route exact path="/login"> 
+        <LoginRoute /> 
       </Route>
-      <Route path="/login"> 
-        <Login /> 
-      </Route>
-      <Route path="/register"> 
-        <Register /> 
+      <Route exact path="/register"> 
+        <RegisterRoute /> 
       </Route>
       <Route path="/*"> 
         <Error404 /> 
-      </Route>
+      </Route>     
       <Route path="/"> 
-        <Home /> 
+        <HomeRoute /> 
       </Route>
       </Switch>
-
       </div>
-      
-    </Router>
-  
+    </Router>  
   );
 }
 
