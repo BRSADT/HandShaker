@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Styles from '../Movil_Componentes/Styles';
+import Styles from '../Estilos/Styles';
 import {
     ScrollView,
     View,
