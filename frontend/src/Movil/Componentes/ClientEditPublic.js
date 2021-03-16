@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Styles from './styles';
-
+import Styles from '../Estilos/Styles';
 import {
     View,
     ScrollView,
@@ -24,7 +23,7 @@ class EditClientPubProfile extends Component {
                     <View style={{flexDirection: 'row'}}>
                         <Image
                             accessibilityRole={'image'}
-                            source={require('../images/user.png')}
+                            source={require('../../../public/images/user.png')}
                             style={Styles.ProfileImage}/>
                         <View style={{flex:3, paddingLeft: 10, alignContent: 'center'}}>
                             <Text style={Styles.Label}>
