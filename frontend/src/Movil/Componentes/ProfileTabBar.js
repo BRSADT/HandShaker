@@ -4,7 +4,7 @@ import {
     Text,
     TouchableOpacity,
 } from 'react-native';
-import Styles from './Styles';
+import Styles from '../Estilos/Styles';
 
 export default class ProfileTabs extends Component {
     render() {
