@@ -65,6 +65,24 @@ const Styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 15,
     },
+    TabBar: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+    },
+    Tab: {
+        borderBottomWidth: 2,
+        width: 205,
+    },
+    TabLabel: {
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 12,
+        paddingVertical: 2,
+    },
+    ActiveTab: {
+        color: Colors.simbolos,
+        borderColor: Colors.simbolos,
+    }
 });
 
 export default Styles;
