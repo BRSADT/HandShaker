@@ -4,8 +4,8 @@ import Colors from '../Estilos/Colors';
 import Header from '../Componentes/Header';
 import Footer from '../Componentes/Footer';
 import ProfileTabBar from '../Componentes/ProfileTabBar';
-import EditPrivate from './ClientEditPrivate';
-import EditPublic from './ClientEditPublic';
+import EditPrivate from '../Componentes/ClientEditPrivate';
+import EditPublic from '../Componentes/ClientEditPublic';
 import {
   View,
   StyleSheet,
