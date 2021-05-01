@@ -8,4 +8,5 @@ export default {
     buttonBackground: '#333333',
     buttonLabel: '#f2f2f2',
     separator: '#bdbdbd',
+    simbolos: '#01a39d',
 };

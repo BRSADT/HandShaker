@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Colors from '../Estilos/Colors';
-
 import {
     View,
     TextInput,
@@ -15,7 +14,7 @@ class Header extends Component {
                 <View style={styles.HeaderContainer}>
                     <Image
                         accessibilityRole={'image'}
-                        source={require('../images/icon32.png')}
+                        source={require('../../../public/images/menu.png')}
                         style={styles.Icon}
                     />
                     <TextInput
@@ -24,7 +23,7 @@ class Header extends Component {
                     />
                     <Image
                         accessibilityRole={'image'}
-                        source={require('../images/icon32.png')}
+                        source={require('../../../public/images/search.png')}
                         style={styles.Icon}
                     />
                 </View>
@@ -39,12 +38,12 @@ const styles = StyleSheet.create({
         flex:0.9,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-around',
     },
     Icon: {
-        margin: 10,
-        height: 40,
-        width: 40,
+        marginHorizontal: 30,
+        height: 25,
+        width: 25,
     },
     SearchInput: {
         borderRadius: 20,

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Colors from '../Estilos/Colors';
-
 import {
     View,
     Image,
@@ -14,23 +13,23 @@ class Footer extends Component {
                 <View style={styles.FooterContainer}>
                     <Image
                         accessibilityRole={'image'}
-                        source={require('../images/icon32.png')}
+                        source={require('../../../public/images/home.png')}
                         style={styles.Icon}/>
                     <Image
                         accessibilityRole={'image'}
-                        source={require('../images/icon32.png')}
+                        source={require('../../../public/images/promotions.png')}
                         style={styles.Icon}/>
                     <Image
                         accessibilityRole={'image'}
-                        source={require('../images/icon32.png')}
+                        source={require('../../../public/images/chats.png')}
                         style={styles.Icon}/>
                     <Image
                         accessibilityRole={'image'}
-                        source={require('../images/icon32.png')}
+                        source={require('../../../public/images/notifications.png')}
                         style={styles.Icon}/>
                     <Image
                         accessibilityRole={'image'}
-                        source={require('../images/icon32.png')}
+                        source={require('../../../public/images/help.png')}
                         style={styles.Icon}/>
                 </View>
             </>
@@ -47,8 +46,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     Icon: {
-        width: 40,
-        height: 40,
+        width: 25,
+        height: 25,
     },
 });
 
