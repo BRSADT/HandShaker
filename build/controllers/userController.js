@@ -9,21 +9,36 @@ let userController = class userController {
     LoginAs(req, res) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
             try {
-                const Log = yield UserModel_1.Login(req.body.Correo, req.body.Contrasena);
-                if (Log == null) {
-                    res.status(404).send("Usuario no encontrado");
-                }
-                else {
-                    res.status(200).json(Log);
+                console.log("here");
+                logger_1.Logger.Info(req.body.userObject, true);
+                const Log = yield UserModel_1.Login(req.body.userObject);
+                logger_1.Logger.Info(Log);
+                switch (Log) {
+                    case "2":
+                        logger_1.Logger.Info("no encontrado");
+                        logger_1.Logger.Info(res);
+                        res.status(404).send("2");
+                        break;
+                    case "3":
+                        logger_1.Logger.Info("no match");
+                        logger_1.Logger.Info(res);
+                        res.status(401).send("3");
+                        break;
+                    default:
+                        logger_1.Logger.Info("encontrado");
+                        logger_1.Logger.Info(Log);
+                        res.status(200).json(Log);
                 }
             }
             catch (e) {
+                res.status(404).json("false");
                 logger_1.Logger.Err(e);
             }
         });
     }
     RegisterAs(req, res) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
+            logger_1.Logger.Info(req.body, true);
             const Log = yield UserModel_2.addUser(req.body);
             res.status(200).send("Ok");
         });

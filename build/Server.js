@@ -6,14 +6,17 @@ const logger_1 = require("@overnightjs/logger");
 const mongoose_1 = tslib_1.__importDefault(require("mongoose"));
 const express = tslib_1.__importStar(require("express"));
 const path = tslib_1.__importStar(require("path"));
+const cors_1 = tslib_1.__importDefault(require("cors"));
 const http_1 = tslib_1.__importDefault(require("http"));
 const userController_1 = tslib_1.__importDefault(require("./controllers/userController"));
+const WorkerController_1 = tslib_1.__importDefault(require("./controllers/WorkerController"));
 const bodyParser = tslib_1.__importStar(require("body-parser"));
 class MainServer extends core_1.Server {
     constructor() {
         super(true);
         this.app.use(bodyParser.json());
         this.app.use(express.static(MainServer.PATH));
+        this.app.use(cors_1.default());
         this.port = process.env.PORT || MainServer.PORT;
         this.setupControllers();
         if (process.env.NODE_ENV !== 'production') {
@@ -24,7 +27,7 @@ class MainServer extends core_1.Server {
         }
     }
     setupControllers() {
-        const controllers = [new userController_1.default()];
+        const controllers = [new userController_1.default(), new WorkerController_1.default()];
         super.addControllers(controllers);
     }
     configureDB(callback) {

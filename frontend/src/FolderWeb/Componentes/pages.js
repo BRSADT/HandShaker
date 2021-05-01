@@ -1,7 +1,8 @@
 import React from "react";
 import Login from "./Login"
 import Home from "./Home"
-
+import SignUp from "./SignUp"
+import Upload from "./UploadProfilePicture"
 
 export function HomeRoute() {
   return (
@@ -47,7 +48,9 @@ export function LoginRoute() {
 export function  RegisterRoute() {
   return (
     <div>
-      <h1>Pagina Registro en creacion</h1>
+     <React.Fragment>
+    <SignUp/>
+  </React.Fragment>
     </div>
   );
 }

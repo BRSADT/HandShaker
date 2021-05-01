@@ -3,8 +3,17 @@ import { Logger } from '@overnightjs/logger';
 import mongoose from 'mongoose';
 import * as express from 'express';
 import * as path from 'path';
+import cors from "cors";
 import http from 'http';
 import userController from './controllers/userController';
+import WorkerController from './controllers/WorkerController';
+import ClientController from './controllers/ClientController';
+import PostsController from './controllers/PostsController';
+import PricesController from './controllers/PriceController';
+import MultimediaController from './controllers/MultimediaController';
+
+
+import PremiumWorkerController from './controllers/PremiumWorkerController';
 import * as bodyParser from 'body-parser';
 class MainServer extends Server{
     private port: number | string;
@@ -17,6 +26,8 @@ class MainServer extends Server{
         super(true);
         this.app.use(bodyParser.json());
         this.app.use(express.static(MainServer.PATH));
+        this.app.use(cors());
+        //this.app.use((req, res, next) => { next(); }, cors({maxAge: 84600}));
         this.port = process.env.PORT || MainServer.PORT;
          this.setupControllers();       
         if (process.env.NODE_ENV !== 'production') { // Reading environment variable
@@ -28,7 +39,7 @@ class MainServer extends Server{
 
     }
     private  setupControllers():void{
-        const controllers=[new userController()];
+        const controllers=[new userController(),new WorkerController(),new ClientController(),new PremiumWorkerController(),new PostsController(),new PricesController(),new MultimediaController()];
         super.addControllers(controllers);
         
 
