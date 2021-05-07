@@ -4,6 +4,8 @@ import {IPremiumWorker} from '../Interfaces/IPremiumWorker';
 import UserSchema from './UserModel'
 import AddressSchema from './AddressModel'
 import UserModel from './UserModel';
+import { IWorker } from '../Interfaces/IWorker';
+import {addUserWorker} from './WorkerModel';
 
 
  const PremiumWorkerModel=UserSchema.discriminator('PremiumWorker',new Schema({
@@ -41,6 +43,43 @@ import UserModel from './UserModel';
     return rec;
   }
 
+  export async function PremiumToWorker(input: IWorker) {
+  console.log("input TO PREMIUM")
+  Logger.Info(input,true)
+ 
+  console.log("JSON")
+  let arr=JSON.stringify(input)
+  console.log("UNSET")
+  console.log("UNSET"+input.Email)
+ 
+  const User = await UserModel.findOneAndDelete({ Email: input.Email });
+  const PremUser= User as IPremiumWorker;
+  const WorkerUser = <IWorker>{};
+  WorkerUser.Email=input.Email
+  WorkerUser.Password=input.Password
+  WorkerUser.Name=PremUser.Name
+  WorkerUser.LastName=PremUser.LastName
+  WorkerUser.Id=PremUser.Id
+  WorkerUser.Category=PremUser.Category
+  WorkerUser.Profession=PremUser.Profession
+  WorkerUser.JobDescription=PremUser.JobDescription
+  WorkerUser.EmailContact=PremUser.EmailContact
+  WorkerUser.isPremium=false
+  WorkerUser.Addresses=PremUser.Addresses
+  WorkerUser.WorkerType=true
+  WorkerUser.IdUser=PremUser.IdUser
+  WorkerUser.ProfilePicture=PremUser.ProfilePicture
+  WorkerUser.Phones=PremUser.Phones
+  WorkerUser.Birthday=PremUser.Birthday
+  WorkerUser.Id=PremUser.Id
+  WorkerUser.UserType="Worker"
+
+  console.log("WorkerUser")
+  Logger.Info(WorkerUser,true);
+  addUserWorker(WorkerUser);
+}
+  
+
 
   
   export async function GetPremiumWorkers() {
@@ -48,10 +87,11 @@ import UserModel from './UserModel';
     var WorkerUsers= new Array();  
     const WorkerUser= arrUser as IPremiumWorker[];
     WorkerUser.forEach(element => {
-if  (element.UserType.toString().localeCompare("Premium")){
-      element.Password=""
-      element.Email=""
-WorkerUsers.push(element)    
+      console.log("tipo "+element.UserType.toString())
+if  (element.UserType.includes("Premium")){
+  console.log("si ")
+      element.Password=""     
+      WorkerUsers.push(element)    
     }
     });
 

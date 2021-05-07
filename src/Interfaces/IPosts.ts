@@ -3,7 +3,7 @@ import { IPost } from './IPost';
 
 export interface IPosts extends Document{
     _id:ObjectId
-    IdPremiumWorker:string
+    EmailPremiumWorker:string
     ListOfPosts: IPost[]
     IdString:String
 

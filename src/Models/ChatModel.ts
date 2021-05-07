@@ -6,21 +6,12 @@ import MessageSchema from '../Models/MessageModel';
 import { IMessage } from '../Interfaces/IMessage';
 
 const ChatSchema=new Schema({
- IdPremiumWorker:{type:String},
+ EmailChatWith:{type:String},
  ListOfMessages: {type:[MessageSchema]}
   })
 
 
-  const ChatModel=model<IChat>('Chats',MessageSchema);
-  export default MessageSchema
+  const ChatModel=model<IChat>('Chats',ChatSchema);
+  export default ChatSchema
 
-  export async function addMessage(input: IChat) {     
-    const   Message = await ChatModel.findOne({ IdUser: input.IdUser} );   
-    if (Message==null) {
-     const rec = await ChatModel.create(input);
-    }else{
-        const MessageFinished = await ChatModel.findOneAndUpdate({IdUser: input.IdUser}, {$push: {ListOfMessages: {$each: input.ListOfMessages}}})
-       //https://www.geeksforgeeks.org/mongodb-push-operator/ 
-    }    
-  }
-
+  

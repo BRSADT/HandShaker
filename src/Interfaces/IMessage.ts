@@ -1,11 +1,10 @@
-import { Document, ObjectId} from 'mongoose';
+import { Document} from 'mongoose';
 
-export interface IMessage extends Document{
-    _id:ObjectId
-    IdUserFrom:String
+export interface IMessage extends Document{ 
+    EmailUserFrom:String
+    EmailUserTo:String
     MessageText:String
-    MessageDate:Date
-    Id:String
+    MessageDate:Date 
 
 }
   

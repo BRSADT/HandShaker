@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 import { addUserPremium } from '../Models/PremiumWorkerModel';
 import { GetPremiumWorkerInformation } from '../Models/PremiumWorkerModel';
 import { GetPremiumWorkers } from '../Models/PremiumWorkerModel';
-
+import { PremiumToWorker } from '../Models/PremiumWorkerModel';
 
 @Controller('api/PremiumWorker')
 class PremiumWorkerController{
@@ -24,6 +24,13 @@ private async WorkerInformation(req:Request,res:Response){
     console.log("tipo de log "+typeof Log)
     res.status(200).send(Log)  
 }
+
+@Post('ChangeToWorker')
+private async WorkerToPremiumCont(req:Request,res:Response){
+   const Log = await PremiumToWorker(req.body);
+   res.status(200).send("Ok")
+}
+
 
 @Post('GetAllPremiumWorkers')
 private async PremiumWorkers(req:Request,res:Response){

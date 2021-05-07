@@ -18,14 +18,14 @@ private async addPostController (req:Request,res:Response){
 @Post('Delete')
 private async DeletePostController (req:Request,res:Response){
     Logger.Info(req.body,true)
-   const Log = await DeletePost(req.body.IdPremiumWorker,req.body.IdPost)
+   const Log = await DeletePost(req.body.EmailPremiumWorker,req.body.IdPost)
    res.status(200).send("Ok") //lo que refgresa
 }
 
 @Post('GetPosts')
 private async GetPostsController (req:Request,res:Response){
     Logger.Info(req.body,true)
-   const Log = await GetPosts(req.body.IdPremiumWorker)
+   const Log = await GetPosts(req.body.EmailPremiumWorker)
    res.status(200).send(Log)   //lo que refgresa
 }
 

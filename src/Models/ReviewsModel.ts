@@ -5,7 +5,7 @@ import {IReviews} from '../Interfaces/IReviews';
 import ReviewSchema from './ReviewModel';
 
 const ReviewsSchema=new Schema({
- IdPremiumWorker:{type:String},
+ EmailPremiumWorker:{type:String},
  ListOfReviews: {type:[ReviewSchema]}
   })
 
@@ -15,24 +15,24 @@ const ReviewsSchema=new Schema({
 
   export async function addReview(input: IReviews) {     
   
-    const Multimedia = await ReviewsModel.findOne({ IdPremiumWorker:input.IdPremiumWorker } );   
+    const Multimedia = await ReviewsModel.findOne({ EmailPremiumWorker:input.EmailPremiumWorker } );   
 
     if (Multimedia==null) {
      const rec = await ReviewsModel.create(input);
     }else{
-        const MultimediaFinished = await ReviewsModel.findOneAndUpdate({IdPremiumWorker: input.IdPremiumWorker}, {$push: {ListOfPosts: {$each: input.ListOfReview}}})
+        const MultimediaFinished = await ReviewsModel.findOneAndUpdate({EmailPremiumWorker:input.EmailPremiumWorker}, {$push: {ListOfPosts: {$each: input.ListOfReview}}})
        //https://www.geeksforgeeks.org/mongodb-push-operator/ 
     }    
   }
 
-  export async function DeleteReview(IdPremiumWorker: string, IdMultimedia: ObjectId) { 
+  export async function DeleteReview(EmailPremiumWorker: string, IdMultimedia: ObjectId) { 
    
-    const Multimedia = await ReviewsModel.findOne({ IdPremiumWorker: IdPremiumWorker } );   
+    const Multimedia = await ReviewsModel.findOne({ EmailPremiumWorker: EmailPremiumWorker } );   
  
     if (Multimedia==null) {
      
     }else{       
-        const MultimediaFinished = await ReviewsModel.findOneAndUpdate({IdPremiumWorker:IdPremiumWorker}, {$pull: {ListOfMultimediaItems: {_id:IdMultimedia}}})
+        const MultimediaFinished = await ReviewsModel.findOneAndUpdate({EmailPremiumWorker: EmailPremiumWorker }, {$pull: {ListOfMultimediaItems: {_id:IdMultimedia}}})
         //https://www.geeksforgeeks.org/mongodb-push-operator/ 
     }    
   }

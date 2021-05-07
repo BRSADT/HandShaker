@@ -1,7 +1,7 @@
 import { Controller, Get, Post } from '@overnightjs/core';
 import { Logger } from '@overnightjs/logger';
 import { Request, Response } from 'express';
-import { addUser } from '../Models/WorkerModel';
+import { addUserWorker } from '../Models/WorkerModel';
 import { GetWorkerInformation } from '../Models/WorkerModel';
 import { GetAllWorkers } from '../Models/WorkerModel';
 import { GetOnlyWorkers } from '../Models/WorkerModel';
@@ -16,7 +16,7 @@ class WorkerController{
 
 @Post('Register')
 private async RegisterAs (req:Request,res:Response){
-   const Log = await addUser(req.body)
+   const Log = await addUserWorker(req.body)
    res.status(200).send("Ok")
 }
 

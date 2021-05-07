@@ -24,7 +24,7 @@ const WorkerModel=UserSchema.discriminator('Worker',new Schema({
  
 
 
- export async function addUser(input: IWorker) {
+ export async function addUserWorker(input: IWorker) {
     Logger.Info(input,true)
     console.log(input.Profession);
 
@@ -36,14 +36,7 @@ const WorkerModel=UserSchema.discriminator('Worker',new Schema({
 export async function UpdateWorkerInformation(input: IWorker) {
   console.log("input")
   Logger.Info(input,true)
-/*let params = { 
-       input
-};
-for(let prop in params)
- if(!params[prop])
-  delete params[prop]; 
-*/
-console.log("JSON")
+  console.log("JSON")
 let arr=JSON.stringify(input)
   Logger.Info(arr,true)
 const User = await UserModel.findOneAndUpdate({ Email: input.Email },input);
@@ -51,7 +44,7 @@ const User = await UserModel.findOneAndUpdate({ Email: input.Email },input);
   }
 
   export async function WorkerToPremium(input: IPremiumWorker) {
-    console.log("input TO PREMIUM")
+    console.log("input TO Woker")
     Logger.Info(input,true)
  
   console.log("JSON")

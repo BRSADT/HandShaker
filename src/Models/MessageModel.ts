@@ -1,12 +1,12 @@
 
 import { model, Schema } from 'mongoose';
 import { IMessage } from '../Interfaces/IMessage';
-import {IPost} from '../Interfaces/IPost';
-import ImageSchema from './ImageModel';
+
 
 const MessageSchema=new Schema({
 
-    IdUserFrom:{type:String},
+    EmailUserFrom:{type:String},
+    EmailUserTo:{type:String},
     MessageText:{type:String},
     MessageDate:{type:Date}
     
