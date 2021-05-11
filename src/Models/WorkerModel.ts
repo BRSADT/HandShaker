@@ -39,7 +39,7 @@ export async function UpdateWorkerInformation(input: IWorker) {
   console.log("JSON")
 let arr=JSON.stringify(input)
   Logger.Info(arr,true)
-const User = await UserModel.findOneAndUpdate({ Email: input.Email },input);
+const User = await WorkerModel.findOneAndUpdate({ Email: input.Email },input);
     Logger.Info(User,true)
   }
 

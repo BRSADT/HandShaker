@@ -34,6 +34,19 @@ import {addUserWorker} from './WorkerModel';
   }
 }
 
+
+
+export async function UpdatePremiumWorkerInformation(input: IPremiumWorker) {
+  console.log("input")
+  Logger.Info(input,true)
+  console.log("JSON")
+let arr=JSON.stringify(input)
+  Logger.Info(arr,true)
+const User = await PremiumWorkerModel.findOneAndUpdate({ Email: input.Email },input);
+    Logger.Info(User,true)
+  }
+
+
  export async function addUserPremium(input: IPremiumWorker) {
   console.log(input.UserType); 
   Logger.Info(input,true)

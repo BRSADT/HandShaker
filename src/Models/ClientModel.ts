@@ -8,15 +8,16 @@ import AddressSchema from './AddressModel'
 
 const ClientModel=UserSchema.discriminator('Client',new Schema({
 
-    IdClient:{type:String},
-    UserType:{type:Boolean},
+    UserType:{type:String},
+    ClientType:{type:Boolean},
     Addresses:{type:[AddressSchema]},
    })
  )
 
 
  export async function GetClientInformation(input: IClient) {
-  const User = await UserModel.findOne({ Email: input.Email } );
+  Logger.Info(input.Email,true)
+  const User = await ClientModel.findOne({ Email: input.Email } );
   if (!User) {      
     return "2";//Not found
   }else{    
@@ -26,6 +27,12 @@ const ClientModel=UserSchema.discriminator('Client',new Schema({
   }
 }
 
+export async function UpdateClientInformation(input: IClient ) {
+  console.log("Clientess")
+  Logger.Info(input,true)
+const User = await ClientModel.findOneAndUpdate({ Email: input.Email },input);
+    Logger.Info(User,true)
+  }
 
  export async function addUser(input: IClient) {
     Logger.Info(input,true);

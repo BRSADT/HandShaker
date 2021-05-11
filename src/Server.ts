@@ -13,7 +13,9 @@ import PricesController from './controllers/PriceController';
 import MultimediaController from './controllers/MultimediaController';
 import AboutController from './controllers/AboutController';
 import ChatController from './controllers/ChatController';
-
+import HiringController from './controllers/HiringController';
+import AgendaController from './controllers/AgendaController';
+import NotificationsController from './controllers/NotificationsController';
 import PremiumWorkerController from './controllers/PremiumWorkerController';
 import * as bodyParser from 'body-parser';
 class MainServer extends Server{
@@ -40,7 +42,7 @@ class MainServer extends Server{
 
     }
     private  setupControllers():void{
-        const controllers=[new userController(),new WorkerController(),new ClientController(),new PremiumWorkerController(),new PostsController(),new PricesController(),new MultimediaController(),new AboutController(),new ChatController()];
+        const controllers=[new userController(),new WorkerController(),new ClientController(),new PremiumWorkerController(),new PostsController(),new PricesController(),new MultimediaController(),new AboutController(),new ChatController(),new HiringController(),new AgendaController(),new NotificationsController()];
         super.addControllers(controllers);
         
 

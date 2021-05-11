@@ -5,6 +5,7 @@ import { addUserPremium } from '../Models/PremiumWorkerModel';
 import { GetPremiumWorkerInformation } from '../Models/PremiumWorkerModel';
 import { GetPremiumWorkers } from '../Models/PremiumWorkerModel';
 import { PremiumToWorker } from '../Models/PremiumWorkerModel';
+import { UpdatePremiumWorkerInformation } from '../Models/PremiumWorkerModel';
 
 @Controller('api/PremiumWorker')
 class PremiumWorkerController{
@@ -40,6 +41,12 @@ private async PremiumWorkers(req:Request,res:Response){
     res.status(200).send(Log)  
 }
 
+@Post('UpdatePremiumWorker')
+private async UpdateWorkerController(req:Request,res:Response){
+   console.log("Update Workers")
+    const Log = await UpdatePremiumWorkerInformation(req.body)
+    res.status(200).send(Log)  
+}
 
 
 
