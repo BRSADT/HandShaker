@@ -6,7 +6,9 @@ import { GetWorkerInformation } from '../Models/WorkerModel';
 import { GetAllWorkers } from '../Models/WorkerModel';
 import { GetOnlyWorkers } from '../Models/WorkerModel';
 import { UpdateWorkerInformation } from '../Models/WorkerModel';
-import {WorkerToPremium} from '../Models/WorkerModel';
+import { WorkersProfession } from '../Models/WorkerModel';
+import { WorkerToPremium } from '../Models/WorkerModel';
+import {WorkersCategory} from '../Models/WorkerModel';
 import {IWorker} from '../Interfaces/IWorker';
 
 
@@ -16,13 +18,13 @@ class WorkerController{
 
 @Post('Register')
 private async RegisterAs (req:Request,res:Response){
-   const Log = await addUserWorker(req.body)
+   const Log = await addUserWorker(req.body.WorkerObject)
    res.status(200).send("Ok")
 }
 
 @Post('ChangeToPremium')
 private async WorkerToPremiumCont(req:Request,res:Response){
-   const Log = await WorkerToPremium(req.body);
+   const Log = await WorkerToPremium(req.body.WorkerObject);
    res.status(200).send("Ok")
 }
 
@@ -57,7 +59,22 @@ private async OnlyWorkersInformation(req:Request,res:Response){
 @Post('UpdateWorker')
 private async UpdateWorkerController(req:Request,res:Response){
    console.log("Update Workers")
-    const Log = await UpdateWorkerInformation(req.body)
+    const Log = await UpdateWorkerInformation(req.body.WorkerObject)
+    res.status(200).send(Log)  
+}
+
+@Post('GetWorkersCategory')
+private async WorkersCategoryController(req:Request,res:Response){
+   console.log("Update Workers")
+   Logger.Info(req.body,true);
+    const Log = await WorkersCategory(req.body.Category)
+    res.status(200).send(Log)  
+}
+
+@Post('GetWorkersProfession')
+private async WorkersProfessionController(req:Request,res:Response){
+   console.log("Update Workers")
+    const Log = await WorkersProfession(req.body.Profession)
     res.status(200).send(Log)  
 }
 

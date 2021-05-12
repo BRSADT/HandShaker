@@ -25,9 +25,12 @@ const WorkerModel=UserSchema.discriminator('Worker',new Schema({
 
 
  export async function addUserWorker(input: IWorker) {
+    
+    console.log("add Worker");
+    input.UserType="Worker"
+    input.WorkerType=true;
+    input.isPremium=false;
     Logger.Info(input,true)
-    console.log(input.Profession);
-
     const rec = await WorkerModel.create(input);
     return rec;
   }
@@ -89,7 +92,7 @@ const User = await WorkerModel.findOneAndUpdate({ Email: input.Email },input);
 
 
   export async function GetWorkerInformation(input: IWorker) {
-    const User = await UserModel.findOne({ Email: input.Email } );
+    const User = await WorkerModel.findOne({ Email: input.Email } );
     if (!User) {      
       return "2";//Not found
     }else{    
@@ -137,7 +140,19 @@ if  (element.UserType.toString().localeCompare("Worker")==0){
   }
 
 
+  export async function WorkersCategory(Category: string) {
+    console.log("look for category "+Category)
+    const arrWorker = await WorkerModel.find({Category:Category})
+    Logger.Info(arrWorker,true);    
+    return arrWorker;
+  
+}
+export async function WorkersProfession(Profession: string) {
+  const arrWorker = await WorkerModel.find({Profession:Profession})
+  Logger.Info(arrWorker,true);    
+  return arrWorker;
 
+}
  
 
   export default WorkerModel

@@ -50,7 +50,9 @@ const User = await PremiumWorkerModel.findOneAndUpdate({ Email: input.Email },in
  export async function addUserPremium(input: IPremiumWorker) {
   console.log(input.UserType); 
   Logger.Info(input,true)
-   
+   input.PremiumType=true;
+   input.isPremium=true;
+   input.UserType="PremiumWorker"
 
     const rec = await PremiumWorkerModel.create(input);
     return rec;
@@ -114,4 +116,18 @@ if  (element.UserType.includes("Premium")){
   
 }
 
- 
+export async function PremiumWorkersCategory(Category: string) {
+  const arrWorker = await PremiumWorkerModel.find({Category:Category})
+  Logger.Info(arrWorker,true);    
+  return arrWorker;
+
+}
+export async function PremiumWorkersProfession(Profession: string) {
+const arrWorker = await PremiumWorkerModel.find({Profession:Profession})
+Logger.Info(arrWorker,true);    
+return arrWorker;
+
+}
+
+
+export default PremiumWorkerModel

@@ -36,7 +36,7 @@ const MultimediaSchema=new Schema({
 
     }
     export async function GetMultimedia(EmailPremiumWorker: string) { 
-      const arrPost = await MultimediaModel.findOne({"EmailPremiumWorker":EmailPremiumWorker})
+      const arrPost = await MultimediaModel.findOne({EmailPremiumWorker:EmailPremiumWorker})
       
       //.find({ _id : IdPremiumWorker })
         

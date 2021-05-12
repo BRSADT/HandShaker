@@ -18,7 +18,7 @@ private async addReviewController (req:Request,res:Response){
 @Post('Delete')
 private async DeleteReviewController (req:Request,res:Response){
     
-   const Log = await DeleteReview(req.body.EmailPremiumWorker,req.body.IdMultimedia)
+   const Log = await DeleteReview(req.body.EmailPremiumWorker,req.body.IdReview)
    res.status(200).send("Ok") //lo que refgresa
 }
 

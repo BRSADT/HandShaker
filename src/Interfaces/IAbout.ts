@@ -1,5 +1,5 @@
 import { Document} from 'mongoose';
 export interface IAbout extends Document{
-    EmailPremiumWorker:string
+    EmailWorker:string
     Description:string
 }
