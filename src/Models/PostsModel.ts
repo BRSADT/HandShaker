@@ -46,7 +46,7 @@ const PostsSchema=new Schema({
 
 
   export async function GetPosts(EmailPremiumWorker: string) { 
-      const arrPost = await PostsModel.findOne({"EmailPremiumWorker":EmailPremiumWorker})
+      const arrPost = await PostsModel.findOne({EmailPremiumWorker:EmailPremiumWorker})
       
       //.find({ _id : IdPremiumWorker })
         

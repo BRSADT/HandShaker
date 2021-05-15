@@ -17,6 +17,9 @@ import HiringController from './controllers/HiringController';
 import AgendaController from './controllers/AgendaController';
 import NotificationsController from './controllers/NotificationsController';
 import PremiumWorkerController from './controllers/PremiumWorkerController';
+import ProfessionController from './controllers/ProfessionController';
+import CategoryController from './controllers/CategoryController';
+
 import * as bodyParser from 'body-parser';
 class MainServer extends Server{
     private port: number | string;
@@ -42,7 +45,12 @@ class MainServer extends Server{
 
     }
     private  setupControllers():void{
-        const controllers=[new userController(),new WorkerController(),new ClientController(),new PremiumWorkerController(),new PostsController(),new PricesController(),new MultimediaController(),new AboutController(),new ChatController(),new HiringController(),new AgendaController(),new NotificationsController()];
+        const controllers=[new userController(),new WorkerController(),new ClientController()
+          ,new PremiumWorkerController(),new PostsController(),new PricesController()
+          ,new MultimediaController(),new AboutController(),new ChatController()
+          ,new HiringController(),new AgendaController(),new NotificationsController()
+          ,new ProfessionController(),new CategoryController()
+        ];
         super.addControllers(controllers);
         
 
