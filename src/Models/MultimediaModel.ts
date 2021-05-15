@@ -18,7 +18,7 @@ const MultimediaSchema=new Schema({
     if (Multimedia==null) {
      const rec = await MultimediaModel.create(input);
     }else{
-        const MultimediaFinished = await MultimediaModel.findOneAndUpdate({EmailPremiumWorker: input.EmailPremiumWorker}, {$push: {ListOfPosts: {$each: input.ListOfMultimediaItems}}})
+        const MultimediaFinished = await MultimediaModel.findOneAndUpdate({EmailPremiumWorker: input.EmailPremiumWorker}, {$push: {ListOfMultimediaItems: {$each: input.ListOfMultimediaItems}}})
        //https://www.geeksforgeeks.org/mongodb-push-operator/ 
     }    
   }
