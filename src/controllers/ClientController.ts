@@ -14,7 +14,12 @@ class ClientController{
 private async RegisterAs (req:Request,res:Response){
     Logger.Info(req.body,true)
    const Log = await addUser(req.body.ClientObject)
-   res.status(200).send("Ok")
+   if(Log==="0"){
+    res.status(409).send("Existe")
+    }else
+    {
+        res.status(200).send("Ok")
+    }
 }
 @Post('GetClientInformation')
 private async ClientInformation(req:Request,res:Response){

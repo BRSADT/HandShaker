@@ -45,6 +45,7 @@ const CategorySchema=new Schema({
 
 
   export async function GetProfessions(NameProfession: string) { 
+    console.log("...")
       const arrPost = await CategoryModel.find({ Name: NameProfession })
       
       //.find({ _id : IdPremiumWorker })

@@ -84,6 +84,25 @@ UserSchema.pre('save', function preSaveAddPasswordHash(next) {
     }
   }
 
+  export async function GetUserInformation(EmailUser: string) {
+    console.log("Email .. "+EmailUser)
+ 
+   const User = await UserModel.findOne({ Email: EmailUser } );
+   
+   if (User==null) {      
+   console.log("no entro")
+     return "2";//Not found
+   }else{    
+     const WorkerPremiumUser= User as Iuser;
+     WorkerPremiumUser.Password=""
+     console.log("lo encontro")
+     
+     return WorkerPremiumUser;
+   }
+ }
+ 
+ 
+
 
   export async function addUser(input: Iuser) {
   

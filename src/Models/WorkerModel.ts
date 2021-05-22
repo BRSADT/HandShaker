@@ -25,14 +25,23 @@ const WorkerModel=UserSchema.discriminator('Worker',new Schema({
 
 
  export async function addUserWorker(input: IWorker) {
-    
-    console.log("add Worker");
+ console.log("agrega Worker")
+  const User = await UserModel.findOne({ Email: input.Email });
+  
+  if (User==null){
+    console.log("add Workerrrrrrr");
     input.UserType="Worker"
     input.WorkerType=true;
     input.isPremium=false;
     Logger.Info(input,true)
     const rec = await WorkerModel.create(input);
-    return rec;
+  return "1";
+  }else
+  {
+    return "0";
+
+  }
+    
   }
 
 
@@ -47,21 +56,23 @@ const User = await WorkerModel.findOneAndUpdate({ Email: input.Email },input);
   }
 
   export async function WorkerToPremium(input: IPremiumWorker) {
-    console.log("input TO Woker")
-    Logger.Info(input,true)
- 
-  console.log("JSON")
-  let arr=JSON.stringify(input)
-  console.log("UNSET")
-  console.log("UNSET"+input.Email)
- 
-  const User = await UserModel.findOneAndDelete({ Email: input.Email });
-  
-  
+   
+  let arr=JSON.stringify(input)   
+  const User = await UserModel.findOneAndDelete({ Email: input.Email });   
   const PremUser= User as IPremiumWorker;
   Logger.Info(PremUser,true);
  
   console.log("AdressesPrem" +PremUser.Addresses)
+  console.log("INPUT "+ input.SuscriptionDate);
+  let dateN
+  dateN=input.SuscriptionDate.toString()
+  dateN+="-01"
+  
+  console.log("INPUT "+ dateN);
+
+  let newDate = new Date(dateN);
+  
+  console.log("FECHA "+ newDate);
 
   const WorkerPremUser = <IPremiumWorker>{};
   WorkerPremUser.Email=input.Email
@@ -75,7 +86,7 @@ const User = await WorkerModel.findOneAndUpdate({ Email: input.Email },input);
   WorkerPremUser.EmailContact=PremUser.EmailContact
   WorkerPremUser.isPremium=true
   WorkerPremUser.Addresses=PremUser.Addresses
-  WorkerPremUser.SuscriptionDate=input.SuscriptionDate
+  WorkerPremUser.SuscriptionDate=newDate
   WorkerPremUser.PremiumType=true
   WorkerPremUser.IdUser=PremUser.IdUser
   WorkerPremUser.ProfilePicture=PremUser.ProfilePicture
@@ -85,8 +96,9 @@ const User = await WorkerModel.findOneAndUpdate({ Email: input.Email },input);
   WorkerPremUser.UserType="PremiumWorker"
 
   console.log("WorkerUser")
-  Logger.Info(WorkerPremUser,true);
-  addUserPremium(WorkerPremUser);
+  const res = await addUserPremium(WorkerPremUser)
+   console.log("res user P " + res)
+   return WorkerPremUser
 }
   
 

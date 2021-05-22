@@ -17,9 +17,7 @@ const WorkersAgendaSchema=new Schema({
     const Agenda = await WorkersAgendaModel.findOne({ EmailPremiumWorker: input.EmailPremiumWorker } );   
     if (Agenda==null) {
      const rec = await WorkersAgendaModel.create(input);
-     //console.log("Model ID... "+rec._id.toString())
-    // const POSTFinished = await PostsModel.findOneAndUpdate({IdPremiumWorker: input.IdPremiumWorker},{$push: { IdString: string.rec._id}})
-
+    
     }else{
         const HiringFinished = await WorkersAgendaModel.findOneAndUpdate({EmailPremiumWorker: input.EmailPremiumWorker}, {$push: {ListOfAgendas: {$each: input.ListOfAgendas}}})
        //https://www.geeksforgeeks.org/mongodb-push-operator/ 
@@ -34,26 +32,21 @@ const WorkersAgendaSchema=new Schema({
     console.log("ID  "+IdAgenda)
     console.log("EMAIL  "+EmailPremiumWorker)
     
-    const POST = await WorkersAgendaModel.findOne({ EmailPremiumWorker: EmailPremiumWorker } );   
- 
+    const POST = await WorkersAgendaModel.findOne({ EmailPremiumWorker: EmailPremiumWorker } );    
     if (POST==null) {
      
     }else{       
       console.log("encontrado  "+IdAgenda)
       const POSTFinished = await WorkersAgendaModel.findOneAndUpdate({EmailPremiumWorker:EmailPremiumWorker}, {$pull: {ListOfAgendas: {_id:IdAgenda}}})
-        //https://www.geeksforgeeks.org/mongodb-push-operator/ 
+      
     }    
   }
 
 
 
   export async function GetAgenda(EmailPremiumWorker: string) { 
-      const arrAgenda = await WorkersAgendaModel.findOne({"EmailPremiumWorker":EmailPremiumWorker})
-      
-      //.find({ _id : IdPremiumWorker })
-        
-      Logger.Info(arrAgenda,true)
-      
+      const arrAgenda = await WorkersAgendaModel.findOne({"EmailPremiumWorker":EmailPremiumWorker})      
+      Logger.Info(arrAgenda,true)      
       return arrAgenda;
     
   }

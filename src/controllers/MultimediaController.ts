@@ -27,7 +27,7 @@ private async DeleteMultimediaController (req:Request,res:Response){
 private async GetMultimediaController (req:Request,res:Response){
     
    const Log = await GetMultimedia(req.body.EmailPremiumWorker)
-   res.status(200).send("Ok") //lo que refgresa
+   res.status(200).send(Log) //lo que refgresa
 }
  
 

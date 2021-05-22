@@ -19,13 +19,22 @@ class WorkerController{
 @Post('Register')
 private async RegisterAs (req:Request,res:Response){
    const Log = await addUserWorker(req.body.WorkerObject)
-   res.status(200).send("Ok")
+   if(Log==="0"){
+      res.status(409).send("Existe")
+   }else
+   {
+
+      res.status(200).send("Ok")
+
+   }
 }
 
 @Post('ChangeToPremium')
 private async WorkerToPremiumCont(req:Request,res:Response){
    const Log = await WorkerToPremium(req.body.WorkerObject);
-   res.status(200).send("Ok")
+   console.log(" ** "  )
+    Logger.Info(Log,true)
+    res.status(200).send(Log)  
 }
 
 @Post('GetWorkerInformation')

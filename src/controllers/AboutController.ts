@@ -11,22 +11,29 @@ class AboutController{
 
 @Post('Add')
 private async addAboutController (req:Request,res:Response){
-  
+   console.log("Add about controller  "+req.body.AboutObject);
    const Log = await addAbout(req.body.AboutObject)
    res.status(200).send("Ok")//lo que regresa
 }
 
 @Post('Delete')
 private async DeleteAboutController (req:Request,res:Response){
-    
+   console.log("Add about controller"+req.body.EmailWorker);
    const Log = await DeleteAbout(req.body.EmailWorker)
-   res.status(200).send("Ok") //lo que refgresa
+   if(Log==1){
+      res.status(200).send("Ok") //
+
+   }
+   else {
+      res.status(404).send("Not Found") //
+
+   }  
 }
 
 
 @Post('Get')
 private async GetAboutController (req:Request,res:Response){
-    
+   console.log("Add about controller"+req.body.EmailWorker);
    const Log = await GetAbout(req.body.EmailWorker)
    res.status(200).send("Ok") //lo que refgresa
 }

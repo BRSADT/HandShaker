@@ -7,6 +7,7 @@ import { IMessage } from '../Interfaces/IMessage';
 
 const ChatSchema=new Schema({
  EmailChatWith:{type:String},
+ NameChatWith:{type:String},
  ListOfMessages: {type:[MessageSchema]}
   })
 

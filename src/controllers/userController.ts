@@ -3,7 +3,7 @@ import { Logger } from '@overnightjs/logger';
 import { Request, Response } from 'express';
 import { Login } from '../Models/UserModel';
 import { addUser } from '../Models/UserModel';
-
+import { GetUserInformation } from '../Models/UserModel';
 @Controller('api/user')
 class userController{
 @Post('Login')
@@ -44,5 +44,14 @@ private async RegisterAs (req:Request,res:Response){
    const Log = await addUser(req.body.userObject)
    res.status(200).send("Ok")
 }
+
+
+@Post('GetInfo')
+private async informationcontroller (req:Request,res:Response){
+  
+   const Log = await GetUserInformation(req.body.Email)
+   res.status(200).send(Log)
+}
+
 }
 export default userController

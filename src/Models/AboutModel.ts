@@ -15,25 +15,25 @@ const AboutSchema=new Schema({
 
   export async function addAbout(input: IAbout) {     
     const About = await AboutModel.findOne({ EmailWorker: input.EmailWorker } );   
+    let Res;
     if (About==null) {
-     const rec = await AboutModel.create(input);
-     //console.log("Model ID... "+rec._id.toString())
-    // const POSTFinished = await PostsModel.findOneAndUpdate({IdPremiumWorker: input.IdPremiumWorker},{$push: { IdString: string.rec._id}})
-
+      Res = await AboutModel.create(input);
+   
     }else{
-        const POSTFinished = await AboutModel.findOneAndUpdate({EmailWorker: input.EmailWorker}, {$set: {Description:input.Description}})
-       //https://www.geeksforgeeks.org/mongodb-push-operator/ 
-    }    
+      Res = await AboutModel.findOneAndUpdate({EmailWorker: input.EmailWorker}, {$set: {Description:input.Description}}) 
+    } 
+    return Res   
   }
 
   export async function DeleteAbout(EmailWorker: string) { 
-   
+    
     const About = await AboutModel.findOne({ EmailWorker: EmailWorker } );   
     Logger.Info(About,true)
     if (About==null) {
-     
+       return (0)
     }else{       
         const AboutFinished = await AboutModel.findOneAndDelete({EmailWorker:EmailWorker})
+        return (1)
         //https://www.geeksforgeeks.org/mongodb-push-operator/ 
     }    
   }

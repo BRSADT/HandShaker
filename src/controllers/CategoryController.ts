@@ -36,7 +36,7 @@ private async GetAboutController (req:Request,res:Response){
 @Post('GetProfession')
 private async GetProfessionController (req:Request,res:Response){
     
-   const Log = await GetProfessions(req.body.Category.NameProfession)
+   const Log = await GetProfessions(req.body.NameProfession)
    res.status(200).send(Log) //lo que refgresa
 }
 

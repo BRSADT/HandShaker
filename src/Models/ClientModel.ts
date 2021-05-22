@@ -35,14 +35,20 @@ const User = await ClientModel.findOneAndUpdate({ Email: input.Email },input);
   }
 
  export async function addUser(input: IClient) {
-   console.log("add user");
+   console.log("add Client");
+   const User = await UserModel.findOne({ Email: input.Email });
+  
+  if (User==null){
    Logger.Info(input,true);
     input.ClientType=true;
     input.UserType="Client"
-    console.log("after");
-    Logger.Info(input,true);
     const rec = await ClientModel.create(input);
-    return rec;
+    return "1";
+  }else
+  {
+    return "0";
+
+  }
   }
 
  

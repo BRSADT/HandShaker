@@ -22,16 +22,19 @@ private async RegisterAs (req:Request,res:Response){
 
 @Post('GetPremiumWorkerInformation')
 private async WorkerInformation(req:Request,res:Response){
+    console.log("ha pedido obtener info del worker"+req.body.PremiumWorkerObject);
     const Log = await GetPremiumWorkerInformation(req.body.PremiumWorkerObject)
     
-    console.log("tipo de log "+typeof Log)
+    console.log(" ** "  )
+    Logger.Info(Log,true)
     res.status(200).send(Log)  
 }
 
 @Post('ChangeToWorker')
 private async WorkerToPremiumCont(req:Request,res:Response){
    const Log = await PremiumToWorker(req.body.PremiumWorkerObject);
-   res.status(200).send("Ok")
+   console.log(" ** "  )
+    Logger.Info(Log,true)
 }
 
 

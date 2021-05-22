@@ -24,12 +24,18 @@ import {addUserWorker} from './WorkerModel';
  )
  
  export async function GetPremiumWorkerInformation(input: IPremiumWorker) {
+   console.log("Email .. "+input.Email)
+
   const User = await UserModel.findOne({ Email: input.Email } );
-  if (!User) {      
+  Logger.Info(User,true)
+  if (User==null) {      
+  console.log("no entro")
     return "2";//Not found
   }else{    
     const WorkerPremiumUser= User as IPremiumWorker;
     WorkerPremiumUser.Password=""
+    console.log("lo encontro")
+    Logger.Info(WorkerPremiumUser,true)
     return WorkerPremiumUser;
   }
 }
@@ -55,7 +61,7 @@ const User = await PremiumWorkerModel.findOneAndUpdate({ Email: input.Email },in
    input.UserType="PremiumWorker"
 
     const rec = await PremiumWorkerModel.create(input);
-    return rec;
+    return 1;
   }
 
   export async function PremiumToWorker(input: IWorker) {
@@ -91,7 +97,10 @@ const User = await PremiumWorkerModel.findOneAndUpdate({ Email: input.Email },in
 
   console.log("WorkerUser")
   Logger.Info(WorkerUser,true);
-  addUserWorker(WorkerUser);
+  addUserWorker(WorkerUser).then(res=>{
+    console.log("respondio")
+    return "cambiado"
+  });
 }
   
 
