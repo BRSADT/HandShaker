@@ -24,18 +24,18 @@ import {addUserWorker} from './WorkerModel';
  )
  
  export async function GetPremiumWorkerInformation(input: IPremiumWorker) {
-   console.log("Email .. "+input.Email)
+   //console.log("Email .. "+input.Email)
 
   const User = await UserModel.findOne({ Email: input.Email } );
-  Logger.Info(User,true)
+  //Logger.Info(User,true)
   if (User==null) {      
-  console.log("no entro")
+ // console.log("no entro")
     return "2";//Not found
   }else{    
     const WorkerPremiumUser= User as IPremiumWorker;
     WorkerPremiumUser.Password=""
-    console.log("lo encontro")
-    Logger.Info(WorkerPremiumUser,true)
+   // console.log("lo encontro")
+   // Logger.Info(WorkerPremiumUser,true)
     return WorkerPremiumUser;
   }
 }
@@ -43,19 +43,19 @@ import {addUserWorker} from './WorkerModel';
 
 
 export async function UpdatePremiumWorkerInformation(input: IPremiumWorker) {
-  console.log("input")
-  Logger.Info(input,true)
-  console.log("JSON")
+ // console.log("input")
+  //Logger.Info(input,true)
+ // console.log("JSON")
 let arr=JSON.stringify(input)
-  Logger.Info(arr,true)
+//  Logger.Info(arr,true)
 const User = await PremiumWorkerModel.findOneAndUpdate({ Email: input.Email },input);
-    Logger.Info(User,true)
+   // Logger.Info(User,true)
   }
 
 
  export async function addUserPremium(input: IPremiumWorker) {
-  console.log(input.UserType); 
-  Logger.Info(input,true)
+ // console.log(input.UserType); 
+ // Logger.Info(input,true)
    input.PremiumType=true;
    input.isPremium=true;
    input.UserType="PremiumWorker"
@@ -65,13 +65,13 @@ const User = await PremiumWorkerModel.findOneAndUpdate({ Email: input.Email },in
   }
 
   export async function PremiumToWorker(input: IWorker) {
-  console.log("input TO PREMIUM")
-  Logger.Info(input,true)
+  //console.log("input TO PREMIUM")
+  //Logger.Info(input,true)
  
-  console.log("JSON")
+ // console.log("JSON")
   let arr=JSON.stringify(input)
-  console.log("UNSET")
-  console.log("UNSET"+input.Email)
+ // console.log("UNSET")
+ // console.log("UNSET"+input.Email)
  
   const User = await UserModel.findOneAndDelete({ Email: input.Email });
   const PremUser= User as IPremiumWorker;
@@ -95,10 +95,10 @@ const User = await PremiumWorkerModel.findOneAndUpdate({ Email: input.Email },in
   WorkerUser.Id=PremUser.Id
   WorkerUser.UserType="Worker"
 
-  console.log("WorkerUser")
-  Logger.Info(WorkerUser,true);
+  //console.log("WorkerUser")
+  //Logger.Info(WorkerUser,true);
   addUserWorker(WorkerUser).then(res=>{
-    console.log("respondio")
+   //console.log("respondio")
     return "cambiado"
   });
 }
@@ -111,9 +111,9 @@ const User = await PremiumWorkerModel.findOneAndUpdate({ Email: input.Email },in
     var WorkerUsers= new Array();  
     const WorkerUser= arrUser as IPremiumWorker[];
     WorkerUser.forEach(element => {
-      console.log("tipo "+element.UserType.toString())
+   //   console.log("tipo "+element.UserType.toString())
 if  (element.UserType.includes("Premium")){
-  console.log("si ")
+  //console.log("si ")
       element.Password=""     
       WorkerUsers.push(element)    
     }
@@ -127,13 +127,13 @@ if  (element.UserType.includes("Premium")){
 
 export async function PremiumWorkersCategory(Category: string) {
   const arrWorker = await PremiumWorkerModel.find({Category:Category})
-  Logger.Info(arrWorker,true);    
+ /// Logger.Info(arrWorker,true);    
   return arrWorker;
 
 }
 export async function PremiumWorkersProfession(Profession: string) {
 const arrWorker = await PremiumWorkerModel.find({Profession:Profession})
-Logger.Info(arrWorker,true);    
+//Logger.Info(arrWorker,true);    
 return arrWorker;
 
 }

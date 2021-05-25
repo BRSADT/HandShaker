@@ -5,6 +5,8 @@ import { addMessage } from '../Models/AllChatsModel';
 import { GetAllMessages } from '../Models/AllChatsModel';
 import { GetMessages } from '../Models/AllChatsModel';
 
+import { GetNumberMessages } from '../Models/AllChatsModel';
+
 @Controller('api/Chat')
 class ChatController{
 
@@ -28,6 +30,15 @@ private async GetChatController (req:Request,res:Response){
 private async GetChatWithController (req:Request,res:Response){
   
    const Log = await GetMessages(req.body.Email,req.body.EmailWith)
+   res.status(200).send(Log)//lo que regresa
+}
+
+
+
+@Post('GetNumberMessages')
+private async GetNumberMessagesController (req:Request,res:Response){
+  
+   const Log = await GetNumberMessages(req.body.Email,req.body.EmailWith)
    res.status(200).send(Log)//lo que regresa
 }
 

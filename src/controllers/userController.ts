@@ -16,19 +16,19 @@ private async LoginAs (req:Request,res:Response){
     Logger.Info(Log)
     switch (Log) {
       case "2": //didn't find user
-        Logger.Info("no encontrado");
-        Logger.Info(res);
+      //  Logger.Info("no encontrado");
+       // Logger.Info(res);
         res.status(404).send("2");
         break;
       case "3": // No match Password
-        Logger.Info("no match");
-        Logger.Info(res);
+       // Logger.Info("no match");
+      //  Logger.Info(res);
         res.status(401).send("3");
         break;
       default:
         // everything okay
         Logger.Info("encontrado");
-        Logger.Info(Log);
+       // Logger.Info(Log);
         res.status(200).json(Log);
     }
     }
@@ -40,7 +40,7 @@ private async LoginAs (req:Request,res:Response){
 
 @Post('Register')
 private async RegisterAs (req:Request,res:Response){
-    Logger.Info(req.body,true)
+  //  Logger.Info(req.body,true)
    const Log = await addUser(req.body.userObject)
    res.status(200).send("Ok")
 }

@@ -296,3 +296,35 @@ export async function addMessage(input: IAllChats) {
     }
         
   }
+
+
+  export async function GetNumberMessages(Email: string,EmailWith: string) {     
+    
+    const   All = await AllChatModel.findOne({ Email: Email } );   
+
+    if(All!=null){
+        console.log("all");
+        Logger.Info(All,true)
+    let ChatsIndv= All.ListOfChats as IChat[];
+    let correspondingChat= new Array();
+    let numberMessages=0;
+    ChatsIndv.forEach(element => {
+        console.log("chat with "+element.EmailChatWith);
+        if  (element.EmailChatWith.toString().includes(EmailWith)){
+           
+            correspondingChat.push(element)    }
+            numberMessages=element.ListOfMessages.length;
+
+            });
+
+    Logger.Info(numberMessages,true)
+
+    return numberMessages.toString();   
+    
+    }else   {
+
+      return  "ERROR";   
+
+    }
+        
+  }

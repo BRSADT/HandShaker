@@ -33,7 +33,7 @@ private async RegisterAs (req:Request,res:Response){
 private async WorkerToPremiumCont(req:Request,res:Response){
    const Log = await WorkerToPremium(req.body.WorkerObject);
    console.log(" ** "  )
-    Logger.Info(Log,true)
+   // Logger.Info(Log,true)
     res.status(200).send(Log)  
 }
 
@@ -41,7 +41,7 @@ private async WorkerToPremiumCont(req:Request,res:Response){
 private async WorkerInformation(req:Request,res:Response){
     const Log = await GetWorkerInformation(req.body.WorkerObject)
     
-    console.log("tipo de log "+typeof Log)
+    //console.log("tipo de log "+typeof Log)
     res.status(200).send(Log)  
 }
 
@@ -49,9 +49,9 @@ private async WorkerInformation(req:Request,res:Response){
 private async AllWorkersInformation(req:Request,res:Response){
    console.log("all workers")
     const Log = await GetAllWorkers()
-    console.log("All Workers")
-    Logger.Info(Log,true)
-    console.log("tipo de log "+typeof Log)
+  //  console.log("All Workers")
+    //Logger.Info(Log,true)
+   // console.log("tipo de log "+typeof Log)
     res.status(200).send(Log)  
 }
 
@@ -59,30 +59,30 @@ private async AllWorkersInformation(req:Request,res:Response){
 private async OnlyWorkersInformation(req:Request,res:Response){
    console.log("only workers")
     const Log = await GetOnlyWorkers()
-    console.log("Only Workers")
-    Logger.Info(Log,true)
-    console.log("tipo de log "+typeof Log)
+   // console.log("Only Workers")
+   // Logger.Info(Log,true)
+   // console.log("tipo de log "+typeof Log)
     res.status(200).send(Log)  
 }
 
 @Post('UpdateWorker')
 private async UpdateWorkerController(req:Request,res:Response){
-   console.log("Update Workers")
+  // console.log("Update Workers")
     const Log = await UpdateWorkerInformation(req.body.WorkerObject)
     res.status(200).send(Log)  
 }
 
 @Post('GetWorkersCategory')
 private async WorkersCategoryController(req:Request,res:Response){
-   console.log("Update Workers")
-   Logger.Info(req.body,true);
+   //console.log("Update Workers")
+   //Logger.Info(req.body,true);
     const Log = await WorkersCategory(req.body.Category)
     res.status(200).send(Log)  
 }
 
 @Post('GetWorkersProfession')
 private async WorkersProfessionController(req:Request,res:Response){
-   console.log("Update Workers")
+   //console.log("Update Workers")
     const Log = await WorkersProfession(req.body.Profession)
     res.status(200).send(Log)  
 }

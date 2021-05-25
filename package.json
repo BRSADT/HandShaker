@@ -36,7 +36,8 @@
     "express": "^4.17.1",
     "module": "^1.2.5",
     "mongoose": "^5.11.18",
-    "mongoose-schema-extend": "^0.2.2"
+    "mongoose-schema-extend": "^0.2.2",
+    "socket.io": "^4.1.2"
   },
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",

@@ -49,10 +49,10 @@ UserSchema.pre('save', function preSaveAddPasswordHash(next) {
   //Methods that belong to UserModel
   UserSchema.methods.comparePassword = async function comparePassword(candidatePassword) {
     const user = this as Iuser;
-    console.log("entrada "+candidatePassword)
-    console.log("contra usuario  "+user.Password)
+   // console.log("entrada "+candidatePassword)
+   // console.log("contra usuario  "+user.Password)
     const isMatch = await bcrypt.compare(candidatePassword, user.Password);
-    console.log("RES"+isMatch)
+   // console.log("RES"+isMatch)
     return isMatch;
   };
 
@@ -76,7 +76,7 @@ UserSchema.pre('save', function preSaveAddPasswordHash(next) {
       return "2";//Not found
     }
     const match = await candidateUser.comparePassword(input.Password)
-    console.log("resultado  "+match)
+   // console.log("resultado  "+match)
     if(match){
         return candidateUser;
     }else{
@@ -85,12 +85,12 @@ UserSchema.pre('save', function preSaveAddPasswordHash(next) {
   }
 
   export async function GetUserInformation(EmailUser: string) {
-    console.log("Email .. "+EmailUser)
+    //console.log("Email .. "+EmailUser)
  
    const User = await UserModel.findOne({ Email: EmailUser } );
    
    if (User==null) {      
-   console.log("no entro")
+  // console.log("no entro")
      return "2";//Not found
    }else{    
      const WorkerPremiumUser= User as Iuser;

@@ -19,6 +19,21 @@ import NotificationsController from './controllers/NotificationsController';
 import PremiumWorkerController from './controllers/PremiumWorkerController';
 import ProfessionController from './controllers/ProfessionController';
 import CategoryController from './controllers/CategoryController';
+import * as socketio from "socket.io";
+
+//let io = require("socket.io")(http);
+
+var STATIC_CHANNELS = [{
+  name: 'Global chat',
+  participants: 0,
+  id: 1,
+  sockets: []
+}, {
+  name: 'Funny',
+  participants: 0,
+  id: 2,
+  sockets: []
+}];
 
 import * as bodyParser from 'body-parser';
 class MainServer extends Server{
@@ -27,7 +42,9 @@ class MainServer extends Server{
     private static readonly SERVER_START_MSG: string = 'Server started on port: ';
     private static readonly DEV_MSG: string = 'Express Server is running in development mode. ' +
     'No front-end content is being served.';
-    private static readonly PATH: string = path.join(__dirname, 'public', 'front');
+    private static readonly PATH: string = path.join(__dirname, 'public', 'front');    
+  //  private  io = require("socket.io")(http);
+  
     constructor(){
         super(true);
         this.app.use(bodyParser.json());
@@ -61,18 +78,59 @@ class MainServer extends Server{
         mongoose.connect(connection, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
           .then(() => {
             Logger.Info("Connected succesfully to Mongo")
+
             callback();
           }).catch(err => {
             Logger.Err(err)
           });
-      }
+      
+      
+      
+      
+        }
       public start(): void {
         this.configureDB(() => {
+
+        
+        console.log("llego aqui")
+  
           const server = new http.Server(this.app);
           server.listen(this.port, () => {
             Logger.Imp(MainServer.SERVER_START_MSG + this.port);
           });
+
+          console.log("llego aqui***************************")
+   
+          var io = require('socket.io')(server);
+          io.on("connection", function(socket: any) {
+            console.log("a user connected********************************************");
+          
+          });
+         
+
+          const collection =   mongoose.connection.collection("allchats")
+          const changeStream = collection.watch({ fullDocument: 'updateLookup' });
+          changeStream.on('change', next => {
+         
+            let variable=JSON.stringify(next)
+            var obj = JSON.parse(variable)
+            console.log( "Email del notificado" + obj.fullDocument.Email);  
+
+         /*     io.on("connection", function(socket: any) {
+                console.log("cliente se ha conectado");
+                socket.emit('connection', null);
+        
+              });*/
+
+
+          io.sockets.emit("ChatChange", "Chats"+obj.fullDocument.Email);
+
+        });
+
+
         })
+       
       }
+      
 }
 export default MainServer; 

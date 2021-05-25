@@ -47,12 +47,12 @@ const WorkerModel=UserSchema.discriminator('Worker',new Schema({
 
 export async function UpdateWorkerInformation(input: IWorker) {
   console.log("input")
-  Logger.Info(input,true)
+  //Logger.Info(input,true)
   console.log("JSON")
 let arr=JSON.stringify(input)
-  Logger.Info(arr,true)
+  //Logger.Info(arr,true)
 const User = await WorkerModel.findOneAndUpdate({ Email: input.Email },input);
-    Logger.Info(User,true)
+  //  Logger.Info(User,true)
   }
 
   export async function WorkerToPremium(input: IPremiumWorker) {
@@ -60,19 +60,19 @@ const User = await WorkerModel.findOneAndUpdate({ Email: input.Email },input);
   let arr=JSON.stringify(input)   
   const User = await UserModel.findOneAndDelete({ Email: input.Email });   
   const PremUser= User as IPremiumWorker;
-  Logger.Info(PremUser,true);
+  //Logger.Info(PremUser,true);
  
-  console.log("AdressesPrem" +PremUser.Addresses)
-  console.log("INPUT "+ input.SuscriptionDate);
+  //console.log("AdressesPrem" +PremUser.Addresses)
+  //console.log("INPUT "+ input.SuscriptionDate);
   let dateN
   dateN=input.SuscriptionDate.toString()
   dateN+="-01"
   
-  console.log("INPUT "+ dateN);
+  //console.log("INPUT "+ dateN);
 
   let newDate = new Date(dateN);
   
-  console.log("FECHA "+ newDate);
+  //console.log("FECHA "+ newDate);
 
   const WorkerPremUser = <IPremiumWorker>{};
   WorkerPremUser.Email=input.Email
@@ -95,9 +95,9 @@ const User = await WorkerModel.findOneAndUpdate({ Email: input.Email },input);
   WorkerPremUser.Id=PremUser.Id
   WorkerPremUser.UserType="PremiumWorker"
 
-  console.log("WorkerUser")
+  //console.log("WorkerUser")
   const res = await addUserPremium(WorkerPremUser)
-   console.log("res user P " + res)
+  // console.log("res user P " + res)
    return WorkerPremUser
 }
   
@@ -153,15 +153,15 @@ if  (element.UserType.toString().localeCompare("Worker")==0){
 
 
   export async function WorkersCategory(Category: string) {
-    console.log("look for category "+Category)
+    //console.log("look for category "+Category)
     const arrWorker = await WorkerModel.find({Category:Category})
-    Logger.Info(arrWorker,true);    
+    //Logger.Info(arrWorker,true);    
     return arrWorker;
   
 }
 export async function WorkersProfession(Profession: string) {
   const arrWorker = await WorkerModel.find({Profession:Profession})
-  Logger.Info(arrWorker,true);    
+  //Logger.Info(arrWorker,true);    
   return arrWorker;
 
 }
