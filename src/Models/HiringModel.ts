@@ -4,12 +4,15 @@ import {IHiring} from '../Interfaces/IHiring';
 import AddressSchema from './AddressModel'
 const HiringSchema=new Schema({
   
+    EmailWorker:{type:String},
     Email:{type:String},
     Subject:{type:String},
     Date:{type:Date},
-    Indicator:{type:String},
+    HiringDate:{type:Date},    
+    indications:{type:String},
+    Status:{type:String},
     Addresses:{type:[AddressSchema]},
-
+    IDcreated:{type:String}
     })
 
 
