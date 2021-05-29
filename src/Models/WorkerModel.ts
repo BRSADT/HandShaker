@@ -51,6 +51,9 @@ export async function UpdateWorkerInformation(input: IWorker) {
   console.log("JSON")
 let arr=JSON.stringify(input)
   //Logger.Info(arr,true)
+  console.log( input.Email)
+  console.log( input.JobDescription)
+  console.log( input.Category)
 const User = await WorkerModel.findOneAndUpdate({ Email: input.Email },input);
   //  Logger.Info(User,true)
   }

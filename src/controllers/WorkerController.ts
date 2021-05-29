@@ -67,7 +67,7 @@ private async OnlyWorkersInformation(req:Request,res:Response){
 
 @Post('UpdateWorker')
 private async UpdateWorkerController(req:Request,res:Response){
-  // console.log("Update Workers")
+   console.log("Update Workers")
     const Log = await UpdateWorkerInformation(req.body.WorkerObject)
     res.status(200).send(Log)  
 }

@@ -2,6 +2,8 @@
 import { model, Schema } from 'mongoose';
 import {IHiring} from '../Interfaces/IHiring';
 import AddressSchema from './AddressModel'
+import {UserSchema} from './UserModel'
+
 const HiringSchema=new Schema({
   
     EmailWorker:{type:String},
@@ -12,7 +14,10 @@ const HiringSchema=new Schema({
     indications:{type:String},
     Status:{type:String},
     Addresses:{type:[AddressSchema]},
-    IDcreated:{type:String}
+    IDcreated:{type:String},
+    userWorker:{type:[UserSchema]},    
+    userClient:{type:[UserSchema]}
+
     })
 
 

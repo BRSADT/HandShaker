@@ -3,10 +3,13 @@ import 'mongoose-schema-extend'
 import { Logger } from '@overnightjs/logger';
 import {IAllNotifications} from '../Interfaces/IAllNotifications';
 import NotificationsSchema from './NotificationsModel';
+import {UserSchema} from './UserModel'
+import { GetUserInformation } from '../Models/UserModel';
 
 const AllNotificationsSchema=new Schema({
   Email:{type:String},
-  ListOfNotifications: {type:[NotificationsSchema]}
+  ListOfNotifications: {type:[NotificationsSchema]},
+  userWorker:{type:[UserSchema]},
   })
 
 
@@ -48,12 +51,34 @@ const AllNotificationsSchema=new Schema({
 
 
   export async function GetNotifications(Email: string) { 
-      const arrHirings = await NotificationsModel.findOne({Email:Email})
-      
-      //.find({ _id : IdPremiumWorker })
+      const arrNotifications = await NotificationsModel.findOne({Email:Email})
+      let NotificationArr= new Array()
+   if  (arrNotifications!=null){
+     
+    
+          
+
+      NotificationArr= arrNotifications.ListOfNotifications          
+       
+      await Promise.all(NotificationArr.map(async (elem) => {
+        try {
+          // here candidate data is inserted into  
+          elem.userFrom=await GetUserInformation(elem.EmailFrom);
+     
+        } catch (error) {
+          console.log('error'+ error);
+        }}
+   
+           
         
-      Logger.Info(arrHirings,true)
+        ))
+      //.find({ _id : IdPremiumWorker })
+      arrNotifications.ListOfNotifications =NotificationArr
+
+   
       
-      return arrHirings;
+      return arrNotifications;}
+      else 
+      return "NO"
     
   }

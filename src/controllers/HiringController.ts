@@ -13,6 +13,7 @@ class HiringController{
 
 @Post('Add')
 private async addHiringController (req:Request,res:Response){
+   Logger.Info(req.body.HiringObject,true)
    const Log = await addHiring(req.body.HiringObject)
    res.status(200).send("Ok")//lo que regresa
 }
@@ -25,14 +26,14 @@ private async DeleteHiringController (req:Request,res:Response){
    res.status(200).send("Ok") //lo que refgresa
 }
 
-@Post('GetHiring')
+@Post('GetHiring')//las contrataciones que el usuario hizo
 private async GetHiringController (req:Request,res:Response){
     Logger.Info(req.body,true)
    const Log = await GetHiring(req.body.Email)
    res.status(200).send(Log)   //lo que refgresa
 }
 
-@Post('GetJobs')
+@Post('GetJobs')//los trabajos
 private async GetJobsController (req:Request,res:Response){
     Logger.Info(req.body,true)
    const Log = await GetJobs(req.body.Email)

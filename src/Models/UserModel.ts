@@ -64,6 +64,8 @@ UserSchema.pre('save', function preSaveAddPasswordHash(next) {
 */
   const UserModel=model<Iuser>('User',UserSchema);
   export default UserModel
+  export {UserSchema}
+
 
 //Functions that use the userModel, Login , Register,Etc
 

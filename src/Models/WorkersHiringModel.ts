@@ -3,6 +3,7 @@ import 'mongoose-schema-extend'
 import { Logger } from '@overnightjs/logger';
 import {IWorkersHiring} from '../Interfaces/IWorkersHiring';
 import HiringSchema from './HiringModel';
+import { GetUserInformation } from '../Models/UserModel';
 
 const WorkersHiringSchema=new Schema({
   Email:{type:String},
@@ -14,18 +15,31 @@ const WorkersHiringSchema=new Schema({
   export default WorkersHiringModel
 
   export async function addHiring(input: IWorkersHiring) {     
+    console.log("add hiring")
     const Hiring = await WorkersHiringModel.findOne({ Email: input.Email } );   
     if (Hiring==null) {
-     const rec = await WorkersHiringModel.create(input);
-     //console.log("Model ID... "+rec._id.toString())
-    // const POSTFinished = await PostsModel.findOneAndUpdate({IdPremiumWorker: input.IdPremiumWorker},{$push: { IdString: string.rec._id}})
+        console.log(   input.ListOfHirings[0].HiringDate)
 
+          if  (input.ListOfHirings[0].HiringDate!=null){
+          let dateN
+          dateN=input.ListOfHirings[0].HiringDate.toString()
+    
+        
+          let newDate = new Date(dateN);
+          input.ListOfHirings[0].HiringDate=newDate
+        }
+    const rec = await WorkersHiringModel.create(input);
+     
     }else{
+      console.log(   input.ListOfHirings[0].HiringDate)
+      if  (input.ListOfHirings[0].HiringDate!=null){
+        let dateN
+        dateN=input.ListOfHirings[0].HiringDate.toString()      
+        let newDate = new Date(dateN);
+        input.ListOfHirings[0].HiringDate=newDate
+      }
         const HiringFinished = await WorkersHiringModel.findOneAndUpdate({Email: input.Email}, {$push: {ListOfHirings: {$each: input.ListOfHirings}}})
        //https://www.geeksforgeeks.org/mongodb-push-operator/ 
-
-
-
     }    
   }
 
@@ -52,10 +66,30 @@ const WorkersHiringSchema=new Schema({
     let HiringArr= new Array()
    if  (arrHirings!=null){
   
-   HiringArr= arrHirings.ListOfHirings 
-   Logger.Info(HiringArr,true)
-   
-   return HiringArr;
+          HiringArr= arrHirings.ListOfHirings 
+        /*  let cont=arrHirings.ListOfHirings.length
+          
+          const x =  await HiringArr.forEach( async (element) => {
+         /* element.userWorker=await GetUserInformation(element.EmailWorker);
+          element.userClient=await GetUserInformation(element.Email)
+           console.log("sigue")
+          
+         
+          });*/
+          
+          await Promise.all(HiringArr.map(async (elem) => {
+            try {
+              // here candidate data is inserted into  
+              elem.userWorker=await GetUserInformation(elem.EmailWorker);
+              elem.userClient=await GetUserInformation(elem.Email)
+            } catch (error) {
+              console.log('error'+ error);
+            }
+          }))
+          console.log('complete all') // gets loged first
+          
+          console.log("termino");
+          return HiringArr;
    }
    //.find({ _id : IdPremiumWorker })
      
@@ -72,9 +106,12 @@ return "0"
   
      arrHiringsAll.forEach(element => {
         element.ListOfHirings.forEach(element2 => {
+
+          if  (element2.Email!=null){
            if(element2.Email.includes(Email)){
              HiringArr.push(element2);
            }
+          }
         });
 
      });

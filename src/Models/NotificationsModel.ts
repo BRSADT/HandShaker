@@ -1,5 +1,6 @@
 
 import { model, Schema } from 'mongoose';
+import {UserSchema} from './UserModel'
 import {INotifications} from '../Interfaces/INotifications';
 
 const NotificationsSchema=new Schema({
@@ -8,7 +9,7 @@ const NotificationsSchema=new Schema({
     Description:{type:String},
     Date:{type:Date},
     Subject:{type:String},
-    
+    userFrom:{type:[UserSchema]},
     })
 
 

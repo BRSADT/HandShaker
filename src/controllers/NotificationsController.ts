@@ -10,6 +10,7 @@ class NotificationsController{
 
 @Post('Add')
 private async addHiringController (req:Request,res:Response){
+   console.log("add not")
    const Log = await addNotification(req.body.NotificationObject)
    res.status(200).send("Ok")//lo que regresa
 }
