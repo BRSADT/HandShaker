@@ -28,7 +28,7 @@ private async DeletePricesController (req:Request,res:Response){
 private async GetPricesController (req:Request,res:Response){
    Logger.Info(req.body,true)
    const Log = await GetItemsPrice(req.body.EmailPremiumWorker)
-   res.status(200).send("Ok") //lo que refgresa
+   res.status(200).send(Log) //lo que refgresa
 }
 
 
