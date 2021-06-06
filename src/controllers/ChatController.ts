@@ -30,7 +30,14 @@ private async GetChatController (req:Request,res:Response){
 private async GetChatWithController (req:Request,res:Response){
   
    const Log = await GetMessages(req.body.Email,req.body.EmailWith)
+
+   if(!Log.includes("NO")){
    res.status(200).send(Log)//lo que regresa
+   }else{
+
+      res.status(404).send(Log)
+
+   }
 }
 
 

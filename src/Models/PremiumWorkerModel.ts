@@ -18,7 +18,7 @@ import {addUserWorker} from './WorkerModel';
     isPremium:{type:Boolean},
     UserType:{type:String},
     Addresses:{type:[AddressSchema]},
-    SuscriptionDate:Date,
+    SuscriptionDate:{type:Date},
     PremiumType:{type:Boolean}    
    })
  )
@@ -54,6 +54,7 @@ const User = await PremiumWorkerModel.findOneAndUpdate({ Email: input.Email },in
 
 
  export async function addUserPremium(input: IPremiumWorker) {
+   console.log("crear Premium")
  // console.log(input.UserType); 
  // Logger.Info(input,true)
    input.PremiumType=true;

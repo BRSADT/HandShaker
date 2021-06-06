@@ -31,10 +31,10 @@ const PostsSchema=new Schema({
 
   export async function DeletePost(EmailPremiumWorker: string, IdPost: ObjectId) { 
     console.log("1")    
-    Logger.Info(IdPost,true)
+
     console.log("id   "+IdPost)
     const POST = await PostsModel.findOne({ EmailPremiumWorker: EmailPremiumWorker } );   
-    Logger.Info(POST,true)
+  
     if (POST==null) {
      
     }else{       
@@ -50,7 +50,7 @@ const PostsSchema=new Schema({
       
       //.find({ _id : IdPremiumWorker })
         
-      Logger.Info(arrPost,true)
+   
       
       return arrPost;
     

@@ -28,7 +28,7 @@ const AboutSchema=new Schema({
   export async function DeleteAbout(EmailWorker: string) { 
     
     const About = await AboutModel.findOne({ EmailWorker: EmailWorker } );   
-    Logger.Info(About,true)
+   
     if (About==null) {
        return (0)
     }else{       
@@ -45,7 +45,7 @@ const AboutSchema=new Schema({
       
       //.find({ _id : IdPremiumWorker })
         
-      Logger.Info(arrAbout,true)
+     
       
       return arrAbout;
     

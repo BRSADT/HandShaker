@@ -16,7 +16,7 @@ const ClientModel=UserSchema.discriminator('Client',new Schema({
 
 
  export async function GetClientInformation(input: IClient) {
-  Logger.Info(input.Email,true)
+
   const User = await ClientModel.findOne({ Email: input.Email } );
   if (!User) {      
     return "2";//Not found
@@ -29,9 +29,9 @@ const ClientModel=UserSchema.discriminator('Client',new Schema({
 
 export async function UpdateClientInformation(input: IClient ) {
   console.log("Clientess")
-  Logger.Info(input,true)
+ 
 const User = await ClientModel.findOneAndUpdate({ Email: input.Email },input);
-    Logger.Info(User,true)
+ 
   }
 
  export async function addUser(input: IClient) {
@@ -39,7 +39,7 @@ const User = await ClientModel.findOneAndUpdate({ Email: input.Email },input);
    const User = await UserModel.findOne({ Email: input.Email });
   
   if (User==null){
-   Logger.Info(input,true);
+ 
     input.ClientType=true;
     input.UserType="Client"
     const rec = await ClientModel.create(input);

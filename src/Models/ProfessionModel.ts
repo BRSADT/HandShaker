@@ -44,7 +44,7 @@ const ProfessionSchema=new Schema({
       
       //.find({ _id : IdPremiumWorker })
         
-      Logger.Info(arrPost,true)
+    
       
       return arrPost;
     

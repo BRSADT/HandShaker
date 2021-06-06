@@ -15,7 +15,7 @@ class PremiumWorkerController{
 
 @Post('Register')
 private async RegisterAs (req:Request,res:Response){
-    Logger.Info(req.body,true)
+ 
    const Log = await addUserPremium(req.body)
    res.status(200).send("Ok")
 }
@@ -34,7 +34,7 @@ private async WorkerInformation(req:Request,res:Response){
 private async WorkerToPremiumCont(req:Request,res:Response){
    const Log = await PremiumToWorker(req.body.PremiumWorkerObject);
    console.log(" ** "  )
-    Logger.Info(Log,true)
+   
 }
 
 

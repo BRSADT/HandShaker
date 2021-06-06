@@ -46,7 +46,7 @@ const WorkersAgendaSchema=new Schema({
 
   export async function GetAgenda(EmailPremiumWorker: string) { 
       const arrAgenda = await WorkersAgendaModel.findOne({"EmailPremiumWorker":EmailPremiumWorker})      
-      Logger.Info(arrAgenda,true)      
+    
       return arrAgenda;
     
   }

@@ -35,7 +35,7 @@ private async DeleteAboutController (req:Request,res:Response){
 private async GetAboutController (req:Request,res:Response){
    console.log("Add about controller"+req.body.EmailWorker);
    const Log = await GetAbout(req.body.EmailWorker)
-   res.status(200).send("Ok") //lo que refgresa
+   res.status(200).send(Log) //lo que refgresa
 }
 
 }

@@ -4,16 +4,16 @@ import { Request, Response } from 'express';
 import { Login } from '../Models/UserModel';
 import { addUser } from '../Models/UserModel';
 import { GetUserInformation } from '../Models/UserModel';
+import { UpdateUser } from '../Models/UserModel';
 @Controller('api/user')
 class userController{
 @Post('Login')
 private async LoginAs (req:Request,res:Response){
    try{
     console.log("here") 
-    Logger.Info(req.body.userObject,true)
+ 
     const Log = await Login(req.body.userObject)
-       
-    Logger.Info(Log)
+    
     switch (Log) {
       case "2": //didn't find user
       //  Logger.Info("no encontrado");
@@ -27,7 +27,7 @@ private async LoginAs (req:Request,res:Response){
         break;
       default:
         // everything okay
-        Logger.Info("encontrado");
+    
        // Logger.Info(Log);
         res.status(200).json(Log);
     }
@@ -50,6 +50,14 @@ private async RegisterAs (req:Request,res:Response){
 private async informationcontroller (req:Request,res:Response){
   
    const Log = await GetUserInformation(req.body.Email)
+   res.status(200).send(Log)
+}
+
+
+@Post('UpdateUser')
+private async Updatecontroller (req:Request,res:Response){
+  
+   const Log = await UpdateUser(req.body.UserObject)
    res.status(200).send(Log)
 }
 

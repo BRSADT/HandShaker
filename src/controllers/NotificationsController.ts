@@ -17,15 +17,14 @@ private async addHiringController (req:Request,res:Response){
 
 @Post('Delete')
 private async DeleteHiringController (req:Request,res:Response){
-    Logger.Info(req.body,true)
-    Logger.Info(req.body.IdHiring,true)
+  
    const Log = await DeleteNotification(req.body.Email,req.body.IdNotification)
    res.status(200).send("Ok") //lo que refgresa
 }
 
 @Post('GetNotifications')
 private async GetHiringController (req:Request,res:Response){
-    Logger.Info(req.body,true)
+  
    const Log = await GetNotifications(req.body.Email)
    res.status(200).send(Log)   //lo que refgresa
 }

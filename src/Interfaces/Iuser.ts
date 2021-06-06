@@ -8,6 +8,7 @@ export interface Iuser extends Document{
     LastName:string
     IdUser:String
     ProfilePicture:IImage
+    HeaderPicture:IImage
     Phones:IPhoneNumber[]
     Birthday:Date
     Id:String

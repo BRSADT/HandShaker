@@ -33,7 +33,7 @@ const WorkerModel=UserSchema.discriminator('Worker',new Schema({
     input.UserType="Worker"
     input.WorkerType=true;
     input.isPremium=false;
-    Logger.Info(input,true)
+  
     const rec = await WorkerModel.create(input);
   return "1";
   }else
@@ -51,29 +51,29 @@ export async function UpdateWorkerInformation(input: IWorker) {
   console.log("JSON")
 let arr=JSON.stringify(input)
   //Logger.Info(arr,true)
-  console.log( input.Email)
-  console.log( input.JobDescription)
-  console.log( input.Category)
+
 const User = await WorkerModel.findOneAndUpdate({ Email: input.Email },input);
   //  Logger.Info(User,true)
   }
 
   export async function WorkerToPremium(input: IPremiumWorker) {
-   
+   console.log("email Worker"+input.Email)
   let arr=JSON.stringify(input)   
   const User = await UserModel.findOneAndDelete({ Email: input.Email });   
   const PremUser= User as IPremiumWorker;
+  //console.log("NAME  "+PremUser.Name);
   //Logger.Info(PremUser,true);
  
   //console.log("AdressesPrem" +PremUser.Addresses)
   //console.log("INPUT "+ input.SuscriptionDate);
+  /*console.log("suscripcion Worker  "+input.SuscriptionDate)
   let dateN
   dateN=input.SuscriptionDate.toString()
   dateN+="-01"
-  
+  */
   //console.log("INPUT "+ dateN);
 
-  let newDate = new Date(dateN);
+  //let newDate = new Date(dateN);
   
   //console.log("FECHA "+ newDate);
 
@@ -86,10 +86,11 @@ const User = await WorkerModel.findOneAndUpdate({ Email: input.Email },input);
   WorkerPremUser.Category=PremUser.Category
   WorkerPremUser.Profession=PremUser.Profession
   WorkerPremUser.JobDescription=PremUser.JobDescription
+  WorkerPremUser.HeaderPicture=PremUser.HeaderPicture
   WorkerPremUser.EmailContact=PremUser.EmailContact
   WorkerPremUser.isPremium=true
   WorkerPremUser.Addresses=PremUser.Addresses
-  WorkerPremUser.SuscriptionDate=newDate
+  WorkerPremUser.SuscriptionDate=input.SuscriptionDate
   WorkerPremUser.PremiumType=true
   WorkerPremUser.IdUser=PremUser.IdUser
   WorkerPremUser.ProfilePicture=PremUser.ProfilePicture

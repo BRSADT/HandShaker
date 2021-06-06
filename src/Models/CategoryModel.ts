@@ -4,10 +4,11 @@ import { Logger } from '@overnightjs/logger';
 import {ICategory} from '../Interfaces/ICategory';
 import ProfessionSchema from '../Models/ProfessionModel';
 
-
+import ImageSchema from './ImageModel';
 const CategorySchema=new Schema({
   Name:{type:String},
-  Categories:{type:[ProfessionSchema]}
+  Categories:{type:[ProfessionSchema]},
+  ImageCategory: ImageSchema
   })
 
 
@@ -33,7 +34,7 @@ const CategorySchema=new Schema({
   export async function DeleteCategory(Category: string, IdCategory: ObjectId) { 
  
     const POST = await CategoryModel.findOne({ Category: Category } );   
-    Logger.Info(POST,true)
+  
     if (POST==null) {
      
     }else{       
@@ -50,7 +51,7 @@ const CategorySchema=new Schema({
       
       //.find({ _id : IdPremiumWorker })
         
-      Logger.Info(arrPost,true)
+  
       
       return arrPost;
     
@@ -62,7 +63,7 @@ const CategorySchema=new Schema({
     
     //.find({ _id : IdPremiumWorker })
       
-    Logger.Info(arrPost,true)
+   
     
     return arrPost;
   

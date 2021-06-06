@@ -9,8 +9,10 @@ const AddressSchema=new Schema({
     Number:{type:String},
     Reference:{type:String},
     LinkMaps:{type:String},
-    Id:{type:String}
-
+    Id:{type:String},
+    BAddress1:{type:String},
+    BAddress2:{type:String},
+    neighborhood:{type:String}
     })
 
 

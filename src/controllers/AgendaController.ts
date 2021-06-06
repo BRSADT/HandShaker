@@ -16,7 +16,7 @@ private async addAgendaController (req:Request,res:Response){
 
 @Post('Delete')
 private async DeleteAgendaController (req:Request,res:Response){
-    Logger.Info(req.body,true)
+ 
   
    const Log = await DeleteAgenda(req.body.EmailPremiumWorker,req.body.IdAgenda)
    res.status(200).send("Ok") //lo que refgresa
@@ -24,7 +24,7 @@ private async DeleteAgendaController (req:Request,res:Response){
 
 @Post('GetAgenda')
 private async GetAgendaController (req:Request,res:Response){
-    Logger.Info(req.body,true)
+ 
    const Log = await GetAgenda(req.body.EmailPremiumWorker)
    res.status(200).send(Log)   //lo que refgresa
 }

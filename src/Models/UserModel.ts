@@ -8,12 +8,15 @@ import ImageSchema from './ImageModel';
 
 const UserSchema=new Schema({
  
-   Email:{type:String,index:{unique:true}},
-   Password:{type:String},
+//   Email:{type:String,index:{unique:true}},
+ 
+Email:{type:String},
+Password:{type:String},
    Name:{type:String},
    LastName:{type:String},
    IdUser:{type:String},
    ProfilePicture:{type:ImageSchema},
+   HeaderPicture:{type:ImageSchema},
    Phones: {type:[TelephoneSchema]},
    Birthday:Date,
    UserType:{type:String}
@@ -104,6 +107,12 @@ UserSchema.pre('save', function preSaveAddPasswordHash(next) {
  }
  
  
+
+ export async function UpdateUser(input: Iuser) {
+  
+  const rec = await UserModel.findOneAndUpdate({ Email: input.Email },input);
+  return rec;
+}
 
 
   export async function addUser(input: Iuser) {

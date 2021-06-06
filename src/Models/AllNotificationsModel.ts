@@ -64,8 +64,8 @@ const AllNotificationsSchema=new Schema({
         try {
           // here candidate data is inserted into  
           elem.userFrom=await GetUserInformation(elem.EmailFrom);
-     
-        } catch (error) {
+          console.log("email de ",elem.EmailFrom.Name )
+        } catch (error) { 
           console.log('error'+ error);
         }}
    

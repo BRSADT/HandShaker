@@ -4,6 +4,7 @@ import { Logger } from '@overnightjs/logger';
 import {IPosts} from '../Interfaces/IPosts';
 import ItemPriceSchema from '../Models/ItemPriceModel';
 import { IPrices } from '../Interfaces/IPrices';
+import { loggerModeArr } from '@overnightjs/logger/lib/constants';
 
 const PricesSchema=new Schema({
   EmailPremiumWorker:{type:String},
@@ -15,6 +16,7 @@ const PricesSchema=new Schema({
   export default PricesModel
 
   export async function addPriceItem(input: IPrices) {     
+  
     Logger.Info(input,true)
     const Prices = await PricesModel.findOne({ EmailPremiumWorker: input.EmailPremiumWorker } );   
     if (Prices==null) {
@@ -27,10 +29,10 @@ const PricesSchema=new Schema({
 
   export async function DeleteItemPrice(EmailPremiumWorker: string, IdPost: ObjectId) { 
     console.log("1")    
-    Logger.Info(IdPost,true)
+ 
     console.log("id   "+IdPost)
     const POST = await PricesModel.findOne({ EmailPremiumWorker: EmailPremiumWorker } );   
-    Logger.Info(POST,true)
+  
     if (POST==null) {
      
     }else{       
@@ -42,6 +44,6 @@ const PricesSchema=new Schema({
 
   export async function GetItemsPrice(EmailPremiumWorker: string) { 
     const arrPost = await PricesModel.findOne({EmailPremiumWorker: EmailPremiumWorker})
-    Logger.Info(arrPost,true)
+ 
     return arrPost;
   }

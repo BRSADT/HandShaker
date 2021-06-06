@@ -31,7 +31,7 @@ private async RegisterAs (req:Request,res:Response){
 
 @Post('ChangeToPremium')
 private async WorkerToPremiumCont(req:Request,res:Response){
-   const Log = await WorkerToPremium(req.body.WorkerObject);
+   const Log = await WorkerToPremium(req.body.PremiumWorkerObject);
    console.log(" ** "  )
    // Logger.Info(Log,true)
     res.status(200).send(Log)  

@@ -15,23 +15,16 @@ const WorkersHiringSchema=new Schema({
   export default WorkersHiringModel
 
   export async function addHiring(input: IWorkersHiring) {     
-    console.log("add hiring")
+   
     const Hiring = await WorkersHiringModel.findOne({ Email: input.Email } );   
     if (Hiring==null) {
-        console.log(   input.ListOfHirings[0].HiringDate)
-
-          if  (input.ListOfHirings[0].HiringDate!=null){
-          let dateN
-          dateN=input.ListOfHirings[0].HiringDate.toString()
-    
-        
-          let newDate = new Date(dateN);
-          input.ListOfHirings[0].HiringDate=newDate
-        }
+     
+      
+      
     const rec = await WorkersHiringModel.create(input);
      
     }else{
-      console.log(   input.ListOfHirings[0].HiringDate)
+    
       if  (input.ListOfHirings[0].HiringDate!=null){
         let dateN
         dateN=input.ListOfHirings[0].HiringDate.toString()      
@@ -44,16 +37,14 @@ const WorkersHiringSchema=new Schema({
   }
 
   export async function DeleteHiring(Email: string, IdHiring: string) { 
-    console.log("1")    
-    console.log("ID  "+IdHiring)
-    console.log("EMAIL  "+Email)
+  
     
     const POST = await WorkersHiringModel.findOne({ Email: Email } );   
  
     if (POST==null) {
      
     }else{       
-      console.log("encontrado  "+IdHiring)
+    
       const POSTFinished = await WorkersHiringModel.findOneAndUpdate({Email:Email}, {$pull: {ListOfHirings: {_id:IdHiring}}})
         //https://www.geeksforgeeks.org/mongodb-push-operator/ 
     }    
@@ -115,9 +106,20 @@ return "0"
         });
 
      });
+
+     await Promise.all(HiringArr.map(async (elem) => {
+      try {
+        // here candidate data is inserted into  
+        elem.userWorker=await GetUserInformation(elem.EmailWorker);
+        elem.userClient=await GetUserInformation(elem.Email)
+      } catch (error) {
+        console.log('error'+ error);
+      }
+    }))
+
   
      if  (HiringArr!=null){  
-      Logger.Info(HiringArr,true)
+   
       return HiringArr;
     }
 
@@ -142,7 +144,6 @@ export async function GetOneHiring(EmailWorker: string,Email: string,ID: string)
   }
 });
 
- Logger.Info(UniqueHiring,true)
  
  return UniqueHiring;
  }

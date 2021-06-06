@@ -90,7 +90,11 @@ class MainServer extends Server{
         }
       public start(): void {
         this.configureDB(() => {
-
+          var countChat=0;
+           var EmailMensajeUno= "";
+         
+           var HiringUser1=""
+           var HiringUser2=""
         
         console.log("llego aqui")
   
@@ -105,28 +109,60 @@ class MainServer extends Server{
           io.on("connection", function(socket: any) {
             console.log("a user connected********************************************");
           
+            
+          //io.sockets.emit("ChatChange", "Chats..");
           });
          
-
+          // ALL CHATS
           const collection =   mongoose.connection.collection("allchats")
           const changeStream = collection.watch({ fullDocument: 'updateLookup' });
           changeStream.on('change', next => {
-         
+            countChat++;
             let variable=JSON.stringify(next)
             var obj = JSON.parse(variable)
-            console.log( "Email del notificado" + obj.fullDocument.Email);  
+            if(countChat==2){
+              let emailFrom
+              let messageT;
+              let date;
+           
+            obj.fullDocument.ListOfChats.forEach( (convUser: any) => {
+              if  (convUser.EmailChatWith.includes(EmailMensajeUno)){
+                let Nmessages=(convUser.ListOfMessages.length)-1
+                messageT=convUser.ListOfMessages[Nmessages].MessageText
+                date=convUser.ListOfMessages[Nmessages].MessageDate
+                emailFrom=convUser.ListOfMessages[Nmessages].EmailUserFrom
+              }
+            });
 
-         /*     io.on("connection", function(socket: any) {
-                console.log("cliente se ha conectado");
-                socket.emit('connection', null);
-        
-              });*/
+            var jsonObject = 
+                {
+                 Email1: EmailMensajeUno, 
+                 Email2: obj.fullDocument.Email,
+                 EmailEmiter:emailFrom,
+                 Mtext:messageT,
+                 dateMessage:date
+                }       
+          io.sockets.emit("ChatChange",jsonObject);
+        }
+              if(countChat==1){
+                EmailMensajeUno=obj.fullDocument.Email
+              }
+              if(countChat==2){
+                countChat=0
 
-
-          io.sockets.emit("ChatChange", "Chats"+obj.fullDocument.Email);
-
+              }
         });
-
+        // hirings
+        const collectionHiring =   mongoose.connection.collection("workershirings")
+        const changeStreamHiring = collectionHiring.watch({ fullDocument: 'updateLookup' });
+        changeStreamHiring.on('change', next => {
+          console.log("nuevo trabajo");
+          let variable=JSON.stringify(next)
+        
+          var obj = JSON.parse(variable)
+       
+          io.sockets.emit("HiringChange",obj.fullDocument.Email);
+         }); 
 
         })
        
