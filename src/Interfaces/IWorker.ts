@@ -6,7 +6,7 @@ export interface IWorker extends Document,Iuser{
     Category?:string
     Profession?:string
     JobDescription?:string
-    EmailContact?:String[]
+    EmailContact?:String
     isPremium?:Boolean
     Addresses?:IAddress[]
     WorkerType?:Boolean

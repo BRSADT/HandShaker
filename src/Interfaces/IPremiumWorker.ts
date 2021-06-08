@@ -5,7 +5,7 @@ export interface IPremiumWorker extends Iuser{
     Category:string
     Profession:string
     JobDescription:string
-    EmailContact:String[]
+    EmailContact:String
     isPremium:Boolean
     Addresses:IAddress[]
     SuscriptionDate:Date

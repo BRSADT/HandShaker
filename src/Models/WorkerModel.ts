@@ -14,7 +14,7 @@ const WorkerModel=UserSchema.discriminator('Worker',new Schema({
     Category:{type:String},
     Profession:{type:String},
     JobDescription:{type:String},
-    EmailContact:{type:[String]},
+    EmailContact:{type:String},
     isPremium:{type:Boolean},
     UserType:{type:String},
     Addresses:{type:[AddressSchema]},

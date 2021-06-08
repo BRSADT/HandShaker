@@ -3,7 +3,7 @@ import { IReview } from './IReview';
 
 export interface IReviews extends Document{
     EmailPremiumWorker:string
-    ListOfReview: IReview
+    ListOfReview: IReview[]
     Id:String
 
 }
