@@ -3,8 +3,9 @@ import 'mongoose-schema-extend'
 import { Logger } from '@overnightjs/logger';
 import {IReviews} from '../Interfaces/IReviews';
 import {IReview} from '../Interfaces/IReview';
-import { GetUserInformation } from '../Models/UserModel';
+import UserModel, { GetUserInformation } from '../Models/UserModel';
 import ReviewSchema from './ReviewModel';
+import { UpdateRating } from '../Models/UserModel';
 
 const ReviewsSchema=new Schema({
  EmailPremiumWorker:{type:String},
@@ -19,7 +20,8 @@ const ReviewsSchema=new Schema({
   export default ReviewsModel
 
   export async function addReview(EmailPremiumWorker: string, RatingStar: number,TextReview:string,DateReview:Date,EmailClient:string) {     
-  console.log("add review")
+  
+    console.log("add review")
     const Rback = await ReviewsModel.findOne({ EmailPremiumWorker:EmailPremiumWorker } );   
 
     if (Rback==null) {
@@ -44,6 +46,7 @@ const ReviewsSchema=new Schema({
       newReviews.NumberReviews=1
 
      const rec = await ReviewsModel.create(newReviews);
+     const UpdateUser= await UpdateRating(EmailPremiumWorker,RatingStar,1);
     }else{
       console.log("ya hay review")
 
@@ -72,7 +75,8 @@ const ReviewsSchema=new Schema({
 
 
         const Review = await ReviewsModel.findOneAndUpdate({EmailPremiumWorker:EmailPremiumWorker }, {$push: {ListOfReviews: {$each: arrayRev}}, $set: {"SumStars":newReviews.SumStars , "Stars":newReviews.Stars  , "NumberReviews":newReviews.NumberReviews}})
-       //https://www.geeksforgeeks.org/mongodb-push-operator/ 
+       let user= new UserModel  
+        const UpdateUser= await UpdateRating(EmailPremiumWorker,numberStars,NumberRev);
     }    
   }
 

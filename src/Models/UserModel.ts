@@ -19,7 +19,10 @@ Password:{type:String},
    HeaderPicture:{type:ImageSchema},
    Phones: {type:[TelephoneSchema]},
    Birthday:Date,
-   UserType:{type:String}
+   
+   UserType:{type:String},
+   RatingStar:{type:Number},
+   NReviews:{type:Number}
   })
 
   
@@ -114,9 +117,19 @@ UserSchema.pre('save', function preSaveAddPasswordHash(next) {
   return rec;
 }
 
+ 
+
+export async function UpdateRating(EmailUser: string,rating: number,reviews: number) {
+  
+  const rec = await UserModel.findOneAndUpdate({ Email:EmailUser },{$set:{"RatingStar":rating,"NReviews":reviews }});
+  return rec;
+}
+
 
   export async function addUser(input: Iuser) {
-  
+   
+    input.RatingStar=0;
+    input.NReviews=0;
     const rec = await UserModel.create(input);
     return rec;
   }

@@ -7,6 +7,8 @@ export interface Iuser extends Document{
     Name:string
     LastName:string
     IdUser:String
+    RatingStar:number
+    NReviews:number
     ProfilePicture:IImage
     HeaderPicture:IImage
     Phones:IPhoneNumber[]
