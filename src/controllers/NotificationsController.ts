@@ -24,9 +24,17 @@ private async DeleteHiringController (req:Request,res:Response){
 
 @Post('GetNotifications')
 private async GetHiringController (req:Request,res:Response){
-  
+  console.log("get")
    const Log = await GetNotifications(req.body.Email)
-   res.status(200).send(Log)   //lo que refgresa
+   if (Log==="NO"){
+
+      res.status(202).send(Log) //lo que refgresa
+   
+   }else{
+      res.status(200).send(Log) //lo que refgresa
+   
+   }
+   
 }
 
 }

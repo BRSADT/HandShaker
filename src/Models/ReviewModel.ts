@@ -1,15 +1,17 @@
 
 import { model, Schema } from 'mongoose';
 import {IReview} from '../Interfaces/IReview';
+import { UserSchema } from './UserModel';
 
 
 const ReviewSchema=new Schema({
  
-    RatingStart:{type:Number},
+    RatingStar:{type:Number},
     TextReview:{type:String},
     DateReview:{type:Date},
-    IdClient:{type:String}
-
+    EmailClient:{type:String},
+    IdClient:{type:String},
+    User:{type:UserSchema}
 
     })
 

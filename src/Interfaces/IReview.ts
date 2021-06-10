@@ -1,10 +1,12 @@
 import { Document} from 'mongoose';
+import { Iuser } from './Iuser';
 
 export interface IReview extends Document{
    RatingStar:number
-   TextReview:String
+   TextReview:string
    DateReview:Date
-   EmailClient:String
-   Id:String
+   EmailClient:string
+   User:Iuser
+   Id:string
 
 }

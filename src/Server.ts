@@ -20,6 +20,7 @@ import PremiumWorkerController from './controllers/PremiumWorkerController';
 import ProfessionController from './controllers/ProfessionController';
 import CategoryController from './controllers/CategoryController';
 import PromotionController from './controllers/PromotionController';
+import ReviewController from './controllers/ReviewController';
 import * as socketio from "socket.io";
 
 //let io = require("socket.io")(http);
@@ -67,7 +68,7 @@ class MainServer extends Server{
           ,new PremiumWorkerController(),new PostsController(),new PricesController()
           ,new MultimediaController(),new AboutController(),new ChatController()
           ,new HiringController(),new AgendaController(),new NotificationsController()
-          ,new ProfessionController(),new CategoryController(),new PromotionController()
+          ,new ProfessionController(),new CategoryController(),new PromotionController(),new ReviewController ()
         ];
         super.addControllers(controllers);
         
