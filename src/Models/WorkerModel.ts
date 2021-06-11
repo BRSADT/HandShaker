@@ -29,7 +29,16 @@ const WorkerModel=UserSchema.discriminator('Worker',new Schema({
   const User = await UserModel.findOne({ Email: input.Email });
   
   if (User==null){
+    console.log("cumple"+input.Birthday.toString())
+    /*let dateN=input.Birthday.toString()      
+    let newDate = new Date(dateN);
+    input.Birthday=newDate
+    console.log("cumple"+newDate)
     console.log("add Workerrrrrrr");
+*/
+    input.RatingStar=0;
+    input.NReviews=0;
+   
     input.UserType="Worker"
     input.WorkerType=true;
     input.isPremium=false;
@@ -95,6 +104,10 @@ const User = await WorkerModel.findOneAndUpdate({ Email: input.Email },input);
   WorkerPremUser.IdUser=PremUser.IdUser
   WorkerPremUser.ProfilePicture=PremUser.ProfilePicture
   WorkerPremUser.Phones=PremUser.Phones
+  WorkerPremUser.RatingStar=PremUser.RatingStar
+  WorkerPremUser.NReviews=PremUser.NReviews
+
+
   WorkerPremUser.Birthday=PremUser.Birthday
   WorkerPremUser.Id=PremUser.Id
   WorkerPremUser.UserType="PremiumWorker"

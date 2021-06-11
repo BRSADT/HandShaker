@@ -128,6 +128,12 @@ export async function UpdateRating(EmailUser: string,rating: number,reviews: num
 
   export async function addUser(input: Iuser) {
    
+  /*  let dateN=input.Birthday.toString()      
+    let newDate = new Date(dateN);
+    input.Birthday=newDate
+    console.log("cumple"+newDate)
+    */
+  
     input.RatingStar=0;
     input.NReviews=0;
     const rec = await UserModel.create(input);
