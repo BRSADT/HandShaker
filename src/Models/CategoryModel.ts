@@ -57,6 +57,24 @@ const CategorySchema=new Schema({
     
   }
 
+  export async function GetAllProfessions() { 
+    console.log("...")
+      const arrProf = await CategoryModel.find({ })
+      let profs = new Array();
+      arrProf.forEach(element => {
+        element.Categories.forEach(element2 => {
+            profs.push(element2.Name)
+        });
+      
+      });
+      //.find({ _id : IdPremiumWorker })
+        
+  
+      
+      return profs;
+    
+  }
+
   
   export async function GetCategories() { 
     const arrPost = await CategoryModel.find({ })

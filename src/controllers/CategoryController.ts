@@ -5,6 +5,7 @@ import { addCategory } from '../Models/CategoryModel';
 import { DeleteCategory } from '../Models/CategoryModel';
 import { GetCategories } from '../Models/CategoryModel';
 import { GetProfessions } from '../Models/CategoryModel';
+import { GetAllProfessions } from '../Models/CategoryModel';
 
 @Controller('api/Category')
 class CategoryController{
@@ -37,6 +38,13 @@ private async GetAboutController (req:Request,res:Response){
 private async GetProfessionController (req:Request,res:Response){
     
    const Log = await GetProfessions(req.body.NameProfession)
+   res.status(200).send(Log) //lo que refgresa
+}
+
+@Post('GetAllProfession')
+private async GetAllProfessionController (req:Request,res:Response){
+    
+   const Log = await GetAllProfessions()
    res.status(200).send(Log) //lo que refgresa
 }
 
